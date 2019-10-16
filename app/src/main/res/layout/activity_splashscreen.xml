@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:elegantTextHeight="true"
         android:gravity="bottom|center"
-        android:text="Welcome!"
+        android:text="Bienvenidos!"
         android:textColor="#000000"
         android:textSize="36sp"
         tools:ignore="MissingConstraints" />
