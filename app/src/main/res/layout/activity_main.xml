@@ -25,7 +25,7 @@
         android:onClick="storyTelling"
         android:text="Storytelling"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintBottom_toTopOf="@+id/buttonWar"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -40,10 +40,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/buttonWar"
         android:layout_width="164dp"
         android:layout_height="62dp"
         android:backgroundTintMode="src_over"
+        android:onClick="war"
         android:text="Migue"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/buttonStorytelling"

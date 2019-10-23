@@ -18,5 +18,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+    fun war(view: View) {
+        // Do something in response to button
+        val intent = Intent(this, War::class.java).apply {}
+        startActivity(intent)
+
+    }
 
 }
