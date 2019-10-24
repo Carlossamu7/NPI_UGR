@@ -30,11 +30,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/buttonPuzzle"
         android:layout_width="163dp"
         android:layout_height="63dp"
         android:backgroundTintMode="src_over"
-        android:text="Carlos"
+        android:onClick="puzzle"
+        android:text="Puzzle"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toEndOf="@+id/buttonStorytelling"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -48,6 +49,6 @@
         android:text="Migue"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/buttonStorytelling"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPuzzle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

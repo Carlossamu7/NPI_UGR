@@ -16,13 +16,18 @@ class MainActivity : AppCompatActivity() {
         // Do something in response to button
         val intent = Intent(this, Storytelling::class.java).apply {}
         startActivity(intent)
-
     }
+
     fun war(view: View) {
         // Do something in response to button
         val intent = Intent(this, War::class.java).apply {}
         startActivity(intent)
+    }
 
+    fun puzzle(view: View) {
+        // Do something in response to button
+        val intent = Intent(this, Puzzle::class.java).apply {}
+        startActivity(intent)
     }
 
 }

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".War"></activity>
+        <activity android:name=".Puzzle"></activity>
+        <activity android:name=".War" />
         <activity
             android:name=".Storytelling"
             android:parentActivityName=".MainActivity">
