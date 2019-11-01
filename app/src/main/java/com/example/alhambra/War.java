@@ -10,5 +10,8 @@ public class War extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_war);
+
+        // Activa la flecha de ir hacia atrás en la jerarquía de activities
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

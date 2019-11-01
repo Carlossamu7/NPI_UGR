@@ -10,5 +10,8 @@ public class PuzzleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
+
+        // Activa la flecha de ir hacia atrás en la jerarquía de activities
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

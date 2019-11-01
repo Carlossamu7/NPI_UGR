@@ -32,6 +32,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button bWar = findViewById(R.id.buttonWar);
+        bWar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), War.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        Button bStorytelling = findViewById(R.id.buttonStorytelling);
+        bStorytelling.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (v.getContext(), Storytelling.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        /* BOTON FLOTANTE COMO PRUEBA
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+         */
     }
 
     @Override
@@ -78,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void storytelling(View view) {
         // Start puzzle in response to button
-        Intent i = new Intent(MainActivity.this, War.class);
+        Intent i = new Intent(MainActivity.this, Storytelling.class);
         startActivity(i);
     }
 }
