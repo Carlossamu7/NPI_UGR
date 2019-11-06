@@ -16,7 +16,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.586"
-        tools:srcCompat="@tools:sample/avatars[0]" />
+        tools:srcCompat="@tools:sample/avatars[0]" /><![CDATA[
+
+    />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
 
     <TextView
         android:id="@+id/textView2"
@@ -27,32 +49,25 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="319dp"
         android:background="#00FFFFFF"
+        android:elevation="5dp"
         android:text="Hola! Bienvenido a la Alhambra! Si quieres información de tu visita, hazle fotos sobre lo que quieras saber y mis amigos y yo te contaremos muchas cosas sobre eso!"
         android:textAlignment="center"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="5dp"/><![CDATA[/>
-
-
-
-
-
-
-
-    ]]>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="271dp"
         android:layout_height="0dp"
         android:layout_marginTop="78dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="182dp"
         android:adjustViewBounds="false"
-        android:elevation="1dp"
+        android:elevation="-1dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
