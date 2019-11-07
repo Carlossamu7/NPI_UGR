@@ -6,74 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".Storytelling">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="226dp"
-        android:layout_height="303dp"
-        android:backgroundTintMode="multiply"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.586"
-        tools:srcCompat="@tools:sample/avatars[0]" /><![CDATA[
 
-    />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ]]>
-
-    <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="181dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="319dp"
-        android:background="#00FFFFFF"
-        android:elevation="5dp"
-        android:text="Hola! Bienvenido a la Alhambra! Si quieres información de tu visita, hazle fotos sobre lo que quieras saber y mis amigos y yo te contaremos muchas cosas sobre eso!"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="271dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="182dp"
-        android:adjustViewBounds="false"
-        android:elevation="-1dp"
-        android:visibility="visible"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/bocadillo_dialogo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF"
+            android:text="Hola! Bienvenido a la Alhambra! Si quieres información de tu visita, hazle fotos sobre lo que quieras saber y mis amigos y yo te contaremos muchas cosas sobre eso!"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="53dp"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/guia_turistico" />
+    </LinearLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -84,7 +68,7 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:maxImageSize="48dp"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
