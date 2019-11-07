@@ -12,14 +12,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="315dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="47dp"
         android:gravity="center|center_horizontal|center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toTopOf="@+id/iView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -30,7 +31,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+            app:layout_constraintBottom_toTopOf="@+id/bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -40,13 +41,13 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="61dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="82dp"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="286dp"
         android:gravity="center_horizontal|top"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -59,17 +60,29 @@
     </LinearLayout>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <ImageView
+        android:id="@+id/iView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="54dp"
-        android:clickable="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="80dp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:maxImageSize="48dp"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:layout_constraintStart_toEndOf="@+id/iView"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
