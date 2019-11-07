@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +19,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 
 
 public class Storytelling extends AppCompatActivity {
@@ -86,11 +93,34 @@ public class Storytelling extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Bitmap bitmap = null;
         if (resultCode == RESULT_OK){
-            mImagenView.setImageURI(image_uri);
+            bitmap = decodeUriToBitmap(this, image_uri);
+
+            //TENGO EL BITMAP, HACER COSAS CON EL (no se si es null en verdad).
+
+
         }
     }
+
+    public static Bitmap decodeUriToBitmap(Context context, Uri sendUri) {
+        Bitmap getBitmap = null;
+        try {
+            InputStream image_stream;
+            try {
+                image_stream = context.getContentResolver().openInputStream(sendUri);
+                getBitmap = BitmapFactory.decodeStream(image_stream);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return getBitmap;
+    }
+
 }
