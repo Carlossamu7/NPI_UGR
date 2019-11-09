@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -31,7 +30,6 @@ public class Storytelling extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
     Button mCaptureBtn;
-    ImageView mImagenView;
 
     Uri image_uri;
 
@@ -43,7 +41,6 @@ public class Storytelling extends AppCompatActivity {
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mImagenView = findViewById(R.id.iView);
         mCaptureBtn = findViewById(R.id.button);
 
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,15 +94,30 @@ public class Storytelling extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = null;
+        Bitmap bitmapFoto;
+        Bitmap bitmapNegro;
+        Bitmap bitmapBlanco;
         if (resultCode == RESULT_OK){
-            bitmap = decodeUriToBitmap(this, image_uri);
+            bitmapFoto = decodeUriToBitmap(this, image_uri);
+            bitmapBlanco = BitmapFactory.decodeResource(getResources(), R.drawable.fblanco);
+            bitmapNegro = BitmapFactory.decodeResource(getResources(), R.drawable.fnegro);
+            int alto = getAlto(bitmapBlanco, bitmapFoto, bitmapNegro);
+            int ancho = getAncho(bitmapBlanco, bitmapFoto, bitmapNegro);
 
-            //TENGO EL BITMAP, HACER COSAS CON EL (no se si es null en verdad).
+            bitmapFoto = redimensionar(alto, ancho, bitmapFoto);
+            bitmapBlanco = redimensionar(alto, ancho, bitmapBlanco);
+            bitmapNegro = redimensionar(alto, ancho, bitmapNegro);
 
-
+            if (comparar(bitmapFoto, bitmapNegro)){
+                //HACER ALGO SABIENDO QUE LA FOTO ES NEGRA
+            } else{
+                if (comparar(bitmapFoto, bitmapBlanco)){
+                    //HACER ALGO SABIENDO QUE LA FOTO ES BLANCA
+                }
+            }
         }
     }
+
 
     public static Bitmap decodeUriToBitmap(Context context, Uri sendUri) {
         Bitmap getBitmap = null;
@@ -122,5 +134,48 @@ public class Storytelling extends AppCompatActivity {
         }
         return getBitmap;
     }
+
+    private int getAlto(Bitmap b1, Bitmap b2, Bitmap b3){
+        int b1alto = b1.getHeight();
+        int b2alto = b2.getHeight();
+        int b3alto = b3.getHeight();
+
+        if (b1alto < b2alto && b1alto < b3alto){
+            return b1alto;
+        } else {
+            if (b2alto < b1alto && b2alto < b3alto){
+                return b2alto;
+            } else{
+                return b3alto;
+            }
+        }
+    }
+
+    private int getAncho(Bitmap b1, Bitmap b2, Bitmap b3){
+        int b1ancho = b1.getWidth();
+        int b2ancho = b2.getWidth();
+        int b3ancho = b3.getWidth();
+
+        if (b1ancho < b2ancho && b1ancho < b3ancho){
+            return b1ancho;
+        } else {
+            if (b2ancho < b1ancho && b2ancho < b3ancho){
+                return b2ancho;
+            } else{
+                return b3ancho;
+            }
+        }
+    }
+
+    private Bitmap redimensionar(int alto, int ancho, Bitmap original){
+        return Bitmap.createScaledBitmap(original, ancho,alto,false);
+    }
+
+    private boolean comparar(Bitmap b1, Bitmap b2) {
+        // FALTA COMPLETAR ESTE METODO
+        return true;
+    }
+
+
 
 }
