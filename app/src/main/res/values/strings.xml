@@ -8,4 +8,5 @@
     <string name="button_puzzle_text">Puzzle</string>
     <string name="button_war_text">War</string>
     <string name="button_storytelling_text">Storytelling</string>
+    <string name="textAcelerometer">1. Reaload your gun 2. Shot !!</string>
 </resources>
