@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -108,11 +109,16 @@ public class Storytelling extends AppCompatActivity {
             bitmapBlanco = redimensionar(alto, ancho, bitmapBlanco);
             bitmapNegro = redimensionar(alto, ancho, bitmapNegro);
 
-            if (comparar(bitmapFoto, bitmapNegro)){
+            if (esNegro(bitmapFoto)){
+                System.out.println("Es negro");
                 //HACER ALGO SABIENDO QUE LA FOTO ES NEGRA
             } else{
-                if (comparar(bitmapFoto, bitmapBlanco)){
+                if (esBlanco(bitmapFoto)){
+                    System.out.println("Es blanco");
                     //HACER ALGO SABIENDO QUE LA FOTO ES BLANCA
+                }
+                else {
+                    System.out.println("No es nada");
                 }
             }
         }
@@ -171,9 +177,51 @@ public class Storytelling extends AppCompatActivity {
         return Bitmap.createScaledBitmap(original, ancho,alto,false);
     }
 
-    private boolean comparar(Bitmap b1, Bitmap b2) {
-        // FALTA COMPLETAR ESTE METODO
-        return true;
+    private boolean esNegro(Bitmap b1) {
+        int color = getAverageColor(b1);
+        int rojo = (color >> 16) & 0xff;
+        int verde = (color >> 8) & 0xff;
+        int azul = (color) & 0xff;
+
+        if (rojo > 0x30 || verde > 0x30 || azul > 0x30)
+            return false; //No es negro
+        else
+            return true; //Es negro
+    }
+
+    private boolean esBlanco(Bitmap b1) {
+        int color = getAverageColor(b1);
+        int rojo = (color >> 16) & 0xff;
+        int verde = (color >> 8) & 0xff;
+        int azul = (color) & 0xff;
+
+        if (rojo < 0x9f || verde < 0x9f || azul < 0x9f)
+            return false; //No es blanco
+        else
+            return true; //Es blanco
+    }
+
+
+    int getAverageColor(Bitmap b1) {
+        int redBucket = 0;
+        int greenBucket = 0;
+        int blueBucket = 0;
+        int pixelCount = 0;
+
+        for (int y = 0; y < b1.getHeight(); y++) {
+            for (int x = 0; x < b1.getWidth(); x++) {
+                int c = b1.getPixel(x, y);
+                pixelCount++;
+                redBucket += Color.red(c);
+                greenBucket += Color.green(c);
+                blueBucket += Color.blue(c);
+            }
+        }
+        int media_rojo =  redBucket/pixelCount;
+        int media_verde =  greenBucket/pixelCount;
+        int media_azul =  blueBucket/pixelCount;
+
+        return (media_rojo & 0xff) << 16 | (media_verde & 0xff) << 8 | (media_azul & 0xff);
     }
 
 
