@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 
 import static java.lang.Math.abs;
@@ -38,6 +39,9 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_making_puzzle);
 
+        // Activa la flecha de ir hacia atrás en la jerarquía de activities
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
         final RelativeLayout layout = findViewById(R.id.layout);
         final ImageView imageView = findViewById(R.id.imageView);
 
@@ -45,16 +49,15 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         final String assetName = intent.getStringExtra("assetName");
         mCurrentPhotoPath = intent.getStringExtra("mCurrentPhotoPath");
 
-        // run image related code after the view was laid out
-        // to have all dimensions calculated
+        // run image related code after the view was laid out to have all dimensions calculated
         imageView.post(new Runnable() {
             @Override
             public void run() {
-                if (assetName != null) {
+                if (assetName != null)
                     setPicFromAsset(assetName, imageView);
-                } else if (mCurrentPhotoPath != null) {
+                else if (mCurrentPhotoPath != null)
                     setPicFromPath(mCurrentPhotoPath, imageView);
-                }
+
                 pieces = splitImage();
                 TouchListener touchListener = new TouchListener(MakingPuzzleActivity.this);
                 // shuffle pieces order
@@ -95,7 +98,7 @@ public class MakingPuzzleActivity extends AppCompatActivity {
             // Decode the image file into a Bitmap sized to fill the View
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
-            bmOptions.inPurgeable = true;
+            //bmOptions.inPurgeable = true;
 
             Bitmap bitmap = BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
             imageView.setImageBitmap(bitmap);
@@ -141,12 +144,8 @@ public class MakingPuzzleActivity extends AppCompatActivity {
                 // calculate offset for each piece
                 int offsetX = 0;
                 int offsetY = 0;
-                if (col > 0) {
-                    offsetX = pieceWidth / 3;
-                }
-                if (row > 0) {
-                    offsetY = pieceHeight / 3;
-                }
+                if (col > 0) offsetX = pieceWidth / 3;
+                if (row > 0) offsetY = pieceHeight / 3;
 
                 // apply the offset to each piece
                 Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap, xCoord - offsetX, yCoord - offsetY, pieceWidth + offsetX, pieceHeight + offsetY);
@@ -246,8 +245,7 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         if (imageView == null || imageView.getDrawable() == null)
             return ret;
 
-        // Get image dimensions
-        // Get image matrix values and place them in an array
+        // Get image dimensions. Get image matrix values and place them in an array
         float[] f = new float[9];
         imageView.getImageMatrix().getValues(f);
 
@@ -267,13 +265,12 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         ret[2] = actW;
         ret[3] = actH;
 
-        // Get image position
-        // We assume that the image is centered into ImageView
+        // Get image position. We assume that the image is centered into ImageView
         int imgViewW = imageView.getWidth();
         int imgViewH = imageView.getHeight();
 
-        int top = (int) (imgViewH - actH)/2;
-        int left = (int) (imgViewW - actW)/2;
+        int top = (imgViewH - actH) /2;
+        int left = (imgViewW - actW) /2;
 
         ret[0] = left;
         ret[1] = top;
@@ -282,17 +279,14 @@ public class MakingPuzzleActivity extends AppCompatActivity {
     }
 
     public void checkGameOver() {
-        if (isGameOver()) {
+        if (isGameOver())
             finish();
-        }
     }
 
     private boolean isGameOver() {
-        for (PuzzlePiece piece : pieces) {
-            if (piece.canMove) {
+        for (PuzzlePiece piece : pieces)
+            if (piece.canMove)
                 return false;
-            }
-        }
 
         return true;
     }
@@ -315,7 +309,7 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+        //bmOptions.inPurgeable = true;
 
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         Bitmap rotatedBitmap = bitmap;
@@ -345,7 +339,6 @@ public class MakingPuzzleActivity extends AppCompatActivity {
     public static Bitmap rotateImage(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
-                matrix, true);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }

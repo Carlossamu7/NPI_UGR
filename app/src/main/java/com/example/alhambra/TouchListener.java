@@ -1,5 +1,6 @@
 package com.example.alhambra;
 
+import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class TouchListener implements View.OnTouchListener {
         return true;
     }
 
-    public void sendViewToBack(final View child) {
+    private void sendViewToBack(final View child) {
         final ViewGroup parent = (ViewGroup)child.getParent();
         if (null != parent) {
             parent.removeView(child);

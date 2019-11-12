@@ -15,18 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".MakingPuzzleActivity"></activity>
+        <activity android:name=".MakingPuzzleActivity"
+            android:parentActivityName=".PuzzleActivity" />
         <activity
             android:name=".Storytelling"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".War"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PuzzleActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
             android:noHistory="true"
@@ -48,7 +48,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

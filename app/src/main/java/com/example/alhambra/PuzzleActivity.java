@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class PuzzleActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
@@ -35,7 +36,7 @@ public class PuzzleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puzzle);
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         AssetManager am = getAssets();
         try {
@@ -47,6 +48,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Intent intent = new Intent(getApplicationContext(), MakingPuzzleActivity.class);
+                    assert files != null;
                     intent.putExtra("assetName", files[i % files.length]);
                     startActivity(intent);
                 }
@@ -83,11 +85,7 @@ public class PuzzleActivity extends AppCompatActivity {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "JPEG_" + timeStamp + "_";
             File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-            File image = File.createTempFile(
-                    imageFileName,  /* prefix */
-                    ".jpg",         /* suffix */
-                    storageDir      /* directory */
-            );
+            File image = File.createTempFile(imageFileName, ".jpg", storageDir);
             mCurrentPhotoPath = image.getAbsolutePath(); // save this to use in the intent
 
             return image;
@@ -98,15 +96,9 @@ public class PuzzleActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    onImageFromCameraClick(new View(this));
-                }
-
-                return;
-            }
-        }
+        if (requestCode == REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                onImageFromCameraClick(new View(this));
     }
 
     @Override

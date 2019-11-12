@@ -1,8 +1,11 @@
 # NPI-ProyectoAlhambra
 
-Carlos
-Alberto
-Migue
+Carlos Sánchez
+Alberto Estepa
+Miguel Robles
+
+Programación de tres grandes actividades: storytelling, war y puzzle.
+
 ##########
 Memoria general:
 https://docs.google.com/document/d/1FKtd9zvM1N-xsDA2CdlPt-tpOMhpMiXh_OlaKU1_GO4/edit
