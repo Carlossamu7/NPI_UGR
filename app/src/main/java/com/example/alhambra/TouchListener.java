@@ -15,20 +15,22 @@ public class TouchListener implements View.OnTouchListener {
     private float yDelta;
     private MakingPuzzleActivity activity;
 
-    public TouchListener(MakingPuzzleActivity activity) {
+    TouchListener(MakingPuzzleActivity activity) {
         this.activity = activity;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         float x = motionEvent.getRawX();
         float y = motionEvent.getRawY();
+        // Definimos la tolerancia con la que aceptaremos la posición de la pieza.
         final double tolerance = sqrt(pow(view.getWidth(), 2) + pow(view.getHeight(), 2)) / 10;
 
         PuzzlePiece piece = (PuzzlePiece) view;
-        if (!piece.canMove) {
+
+        if (!piece.canMove)
             return true;
-        }
 
         RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
         switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
@@ -60,8 +62,8 @@ public class TouchListener implements View.OnTouchListener {
     }
 
     private void sendViewToBack(final View child) {
-        final ViewGroup parent = (ViewGroup)child.getParent();
-        if (null != parent) {
+        final ViewGroup parent = (ViewGroup) child.getParent();
+        if (parent != null) {
             parent.removeView(child);
             parent.addView(child, 0);
         }

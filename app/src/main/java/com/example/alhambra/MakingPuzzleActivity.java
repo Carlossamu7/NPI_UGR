@@ -98,7 +98,6 @@ public class MakingPuzzleActivity extends AppCompatActivity {
             // Decode the image file into a Bitmap sized to fill the View
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
-            //bmOptions.inPurgeable = true;
 
             Bitmap bitmap = BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
             imageView.setImageBitmap(bitmap);
@@ -164,41 +163,34 @@ public class MakingPuzzleActivity extends AppCompatActivity {
                 Canvas canvas = new Canvas(puzzlePiece);
                 Path path = new Path();
                 path.moveTo(offsetX, offsetY);
-                if (row == 0) {
-                    // top side piece
+
+                if (row == 0) // top side piece
                     path.lineTo(pieceBitmap.getWidth(), offsetY);
-                } else {
-                    // top bump
+                else { // top bump
                     path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3, offsetY);
                     path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, offsetY);
                     path.lineTo(pieceBitmap.getWidth(), offsetY);
                 }
 
-                if (col == cols - 1) {
-                    // right side piece
+                if (col == cols - 1) // right side piece
                     path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
-                } else {
-                    // right bump
+                else { // right bump
                     path.lineTo(pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
                     path.cubicTo(pieceBitmap.getWidth() - bumpSize,offsetY + (pieceBitmap.getHeight() - offsetY) / 6, pieceBitmap.getWidth() - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
                     path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
                 }
 
-                if (row == rows - 1) {
-                    // bottom side piece
+                if (row == rows - 1) // bottom side piece
                     path.lineTo(offsetX, pieceBitmap.getHeight());
-                } else {
-                    // bottom bump
+                else { // bottom bump
                     path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, pieceBitmap.getHeight());
                     path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5,pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6, pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3, pieceBitmap.getHeight());
                     path.lineTo(offsetX, pieceBitmap.getHeight());
                 }
 
-                if (col == 0) {
-                    // left side piece
+                if (col == 0) // left side piece
                     path.close();
-                } else {
-                    // left bump
+                else { // left bump
                     path.lineTo(offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
                     path.cubicTo(offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6, offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
                     path.close();
@@ -309,7 +301,6 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         // Decode the image file into a Bitmap sized to fill the View
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
-        //bmOptions.inPurgeable = true;
 
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         Bitmap rotatedBitmap = bitmap;

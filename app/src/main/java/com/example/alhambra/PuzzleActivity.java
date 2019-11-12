@@ -1,10 +1,10 @@
 package com.example.alhambra;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
-
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -54,7 +54,7 @@ public class PuzzleActivity extends AppCompatActivity {
                 }
             });
         } catch (IOException e) {
-            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT);
+            Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -65,7 +65,7 @@ public class PuzzleActivity extends AppCompatActivity {
             try {
                 photoFile = createImageFile();
             } catch (IOException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG);
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
             if (photoFile != null) {
@@ -82,7 +82,7 @@ public class PuzzleActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE);
         } else {
             // Create an image file name
-            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "JPEG_" + timeStamp + "_";
             File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             File image = File.createTempFile(imageFileName, ".jpg", storageDir);
