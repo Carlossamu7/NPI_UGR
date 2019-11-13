@@ -24,11 +24,12 @@ public class TouchListener implements View.OnTouchListener {
     public boolean onTouch(View view, MotionEvent motionEvent) {
         float x = motionEvent.getRawX();
         float y = motionEvent.getRawY();
+
         // Definimos la tolerancia con la que aceptaremos la posición de la pieza.
         final double tolerance = sqrt(pow(view.getWidth(), 2) + pow(view.getHeight(), 2)) / 10;
 
+        //Obtenemos la vista de la pieza y comprobamos que no está colocada.
         PuzzlePiece piece = (PuzzlePiece) view;
-
         if (!piece.canMove)
             return true;
 

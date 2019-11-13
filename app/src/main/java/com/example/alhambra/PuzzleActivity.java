@@ -63,9 +63,8 @@ public class PuzzleActivity extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException e) {
+            try { photoFile = createImageFile(); }
+            catch (IOException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
@@ -79,14 +78,14 @@ public class PuzzleActivity extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // permission not granted, initiate request
+            // si no tenemos permiso lo solicitamos
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE);
-        } else { // Create an image file name
+        } else { // creamos un archivo de imagen
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "JPEG_" + timeStamp + "_";
             File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-            mCurrentPhotoPath = image.getAbsolutePath(); // save this to use in the intent
+            mCurrentPhotoPath = image.getAbsolutePath();
             return image;
         }
 

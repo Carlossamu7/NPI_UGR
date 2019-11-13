@@ -1,5 +1,6 @@
 package com.example.alhambra;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -42,7 +43,7 @@ public class ImageAdapter extends BaseAdapter{
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
+    // Creamos un nuevo ImageView para cada elemento al que hace referencia el adaptador
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
@@ -51,8 +52,9 @@ public class ImageAdapter extends BaseAdapter{
 
         final ImageView imageView = convertView.findViewById(R.id.gridImageview);
         imageView.setImageBitmap(null);
-        // run image related code after the view was laid out
+        // Ejecutamos el código relacionado con la imagen después de presentar la vista
         imageView.post(new Runnable() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             public void run() {
                 new AsyncTask<Void, Void, Void>() {
@@ -76,38 +78,32 @@ public class ImageAdapter extends BaseAdapter{
     }
 
     private Bitmap getPicFromAsset(ImageView imageView, String assetName) {
-        // Get the dimensions of the View
+        // Dimensiones de la vista
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();
-
-        if(targetW == 0 || targetH == 0) {
-            // view has no dimensions set
-            return null;
-        }
+        if(targetW == 0 || targetH == 0) { return null; }
 
         try {
             InputStream is = am.open("img/" + assetName);
-            // Get the dimensions of the bitmap
+            // Dimesiones del bitmap
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
             int photoW = bmOptions.outWidth;
             int photoH = bmOptions.outHeight;
 
-            // Determine how much to scale down the image
+            // Determinamos cuánto escalar la imagen
             int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
 
             is.reset();
 
-            // Decode the image file into a Bitmap sized to fill the View
+            // Decodificamos el archivo de imagen en un Bitmap de tamaño para llenar la vista
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
-            bmOptions.inPurgeable = true;
 
             return BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
         } catch (IOException e) {
             e.printStackTrace();
-
             return null;
         }
     }
