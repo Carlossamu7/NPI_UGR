@@ -18,7 +18,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -30,9 +34,14 @@ public class Storytelling extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
-    Button mCaptureBtn;
+    FloatingActionButton mCaptureBtn;
+    TextView textV;
+    ImageView imageV;
 
     Uri image_uri;
+
+    int negro = 0;
+    int blanco = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +50,11 @@ public class Storytelling extends AppCompatActivity {
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Alhambra: Storytelling");
 
         mCaptureBtn = findViewById(R.id.button);
+        textV = findViewById(R.id.tvStorytelling);
+        imageV = findViewById(R.id.imStorytelling);
 
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,21 +118,65 @@ public class Storytelling extends AppCompatActivity {
             int ancho = getAncho(bitmapBlanco, bitmapFoto, bitmapNegro);
 
             bitmapFoto = redimensionar(alto, ancho, bitmapFoto);
-            bitmapBlanco = redimensionar(alto, ancho, bitmapBlanco);
-            bitmapNegro = redimensionar(alto, ancho, bitmapNegro);
 
-            if (esNegro(bitmapFoto)){
-                System.out.println("Es negro");
-                //HACER ALGO SABIENDO QUE LA FOTO ES NEGRA
+            eleccionMonumento(bitmapFoto);
+        }
+    }
+
+    private void eleccionMonumento(Bitmap bitmapFoto) {
+        if (esNegro(bitmapFoto)) {
+            eleccionMonumentoNegro();
+            negro++;
+        } else{
+            if (esBlanco(bitmapFoto)){
+                eleccionMonumentoBlanco();
+                blanco++;
             } else{
-                if (esBlanco(bitmapFoto)){
-                    System.out.println("Es blanco");
-                    //HACER ALGO SABIENDO QUE LA FOTO ES BLANCA
-                }
-                else {
-                    System.out.println("No es nada");
-                }
+                textV.setText("Gracias por su visita!");
+                imageV.setImageResource(R.drawable.musulman);
             }
+        }
+    }
+
+    private void eleccionMonumentoBlanco() {
+        switch (blanco) {
+            case 0:
+                textV.setText("Estamos en la Puerta de las Granada, se construyó en 1536 sobre la antigua" +
+                        " Puerta Bib-Albuxar (Puerta de las Alegres Nuevas). Algunos restos de esta puerta" +
+                        " quedan aún en su parte derecha. ");
+                imageV.setImageResource(R.drawable.guia_turistica);
+                break;
+            case 1:
+                textV.setText("Estamos ya dentro de la ciudad amurallada de la Alhambra medieval en la Plaza de " +
+                        "los Aljibes. Esta plaza era un lugar de tránsito que separaba la zona militar y los palacios.");
+                imageV.setImageResource(R.drawable.soldado);
+                break;
+            default:
+                textV.setText("Gracias por su visita!");
+                imageV.setImageResource(R.drawable.musulman);
+                blanco = -1;
+                break;
+        }
+    }
+
+    private void eleccionMonumentoNegro(){
+        switch (negro) {
+            case 0:
+                textV.setText("Estamos en la Puerta de la Justicia, también conocida como Puerta" +
+                        " de la Explanada por el amplio espacio que se extendía ante ella. Su majestuosa" +
+                        " figura preside todo el ámbito y se ha convertido en uno de los símbolos de la Alhambra.");
+                imageV.setImageResource(R.drawable.guia_turistico);
+                break;
+            case 1:
+                textV.setText("Encontraste mi Palacio! Yo soy Carlos V y esta una construcción renacentista " +
+                        "situada en la colina de la Alhambra de la ciudad española de Granada, en Andalucía.");
+                imageV.setImageResource(R.drawable.carlosv);
+                break;
+            default:
+                textV.setText("Gracias por su visita!");
+                imageV.setImageResource(R.drawable.musulman);
+                negro = -1;
+                break;
         }
     }
 

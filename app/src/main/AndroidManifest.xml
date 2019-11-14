@@ -19,6 +19,7 @@
             android:parentActivityName=".PuzzleActivity" />
         <activity
             android:name=".Storytelling"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".War"
