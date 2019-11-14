@@ -14,6 +14,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.exifinterface.media.ExifInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +44,8 @@ public class MakingPuzzleActivity extends AppCompatActivity {
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        // Cambiamos el texto del toolbar
+        getSupportActionBar().setTitle("¡Haz el puzzle!");
 
         final RelativeLayout layout = findViewById(R.id.layout);
         final ImageView imageView = findViewById(R.id.imageView);
@@ -60,10 +64,10 @@ public class MakingPuzzleActivity extends AppCompatActivity {
                 else if (mCurrentPhotoPath != null)
                     setPicFromPath(mCurrentPhotoPath, imageView);
 
-                pieces = splitImage();
+                pieces = splitImage();          // dividimos la imagen
+                Collections.shuffle(pieces);    // barajamos las piezas
                 TouchListener touchListener = new TouchListener(MakingPuzzleActivity.this);
-                // barajamos el orden de las piezas
-                Collections.shuffle(pieces);
+
                 for (PuzzlePiece piece : pieces) {
                     piece.setOnTouchListener(touchListener);
                     layout.addView(piece);

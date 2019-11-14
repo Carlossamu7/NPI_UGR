@@ -39,6 +39,8 @@ public class PuzzleActivity extends AppCompatActivity {
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        // Cambiamos el texto del toolbar
+        getSupportActionBar().setTitle("¡Elige puzzle!");
 
         AssetManager am = getAssets();
         try {
