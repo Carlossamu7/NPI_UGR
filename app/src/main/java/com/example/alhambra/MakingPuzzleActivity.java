@@ -1,5 +1,6 @@
 package com.example.alhambra;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -49,8 +50,9 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         final String assetName = intent.getStringExtra("assetName");
         mCurrentPhotoPath = intent.getStringExtra("mCurrentPhotoPath");
 
-        // run image related code after the view was laid out to have all dimensions calculated
+        // Ejecutamos código relacionado con la imagen después de que la vista se haya diseñado para calcular las dimensiones
         imageView.post(new Runnable() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public void run() {
                 if (assetName != null)
@@ -60,12 +62,11 @@ public class MakingPuzzleActivity extends AppCompatActivity {
 
                 pieces = splitImage();
                 TouchListener touchListener = new TouchListener(MakingPuzzleActivity.this);
-                // shuffle pieces order
+                // barajamos el orden de las piezas
                 Collections.shuffle(pieces);
                 for (PuzzlePiece piece : pieces) {
                     piece.setOnTouchListener(touchListener);
                     layout.addView(piece);
-                    // randomize position, on the bottom of the screen
                     RelativeLayout.LayoutParams lParams = (RelativeLayout.LayoutParams) piece.getLayoutParams();
                     lParams.leftMargin = new Random().nextInt(layout.getWidth() - piece.pieceWidth);
                     lParams.topMargin = layout.getHeight() - piece.pieceHeight;
@@ -76,14 +77,14 @@ public class MakingPuzzleActivity extends AppCompatActivity {
     }
 
     private void setPicFromAsset(String assetName, ImageView imageView) {
-        // Get the dimensions of the View
+        // Dimensiones del View
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();
 
         AssetManager am = getAssets();
         try {
             InputStream is = am.open("img/" + assetName);
-            // Get the dimensions of the bitmap
+            // Dimensiones del bitmap
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
@@ -92,7 +93,7 @@ public class MakingPuzzleActivity extends AppCompatActivity {
 
             is.reset();
 
-            // Decode the image file into a Bitmap sized to fill the View
+            // Decodificamos el archivo de imagen en un Bitmap de tamaño para llenar la vista
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = Math.min(photoW/targetW, photoH/targetH); // how much to scale down the image
 
@@ -112,7 +113,7 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
         ArrayList<PuzzlePiece> pieces = new ArrayList<>(piecesNumber);
 
-        // Get the scaled bitmap of the source image
+        // Obtenemos el Bitmap escalado de la imagen
         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
 
@@ -128,22 +129,22 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledBitmapWidth, scaledBitmapHeight, true);
         Bitmap croppedBitmap = Bitmap.createBitmap(scaledBitmap, abs(scaledBitmapLeft), abs(scaledBitmapTop), croppedImageWidth, croppedImageHeight);
 
-        // Calculate the with and height of the pieces
+        // Calculamos el ancho y el alto de las piezas.
         int pieceWidth = croppedImageWidth/cols;
         int pieceHeight = croppedImageHeight/rows;
 
-        // Create each bitmap piece and add it to the resulting array
+        // Creamos cada pieza del Bitmap y lo añadimos al array.
         int yCoord = 0;
         for (int row = 0; row < rows; row++) {
             int xCoord = 0;
             for (int col = 0; col < cols; col++) {
-                // calculate offset for each piece
+                // calculamos el offset de cada pieza
                 int offsetX = 0;
                 int offsetY = 0;
                 if (col > 0) offsetX = pieceWidth / 3;
                 if (row > 0) offsetY = pieceHeight / 3;
 
-                // apply the offset to each piece
+                // Aplicamos el offset a las piezas
                 Bitmap pieceBitmap = Bitmap.createBitmap(croppedBitmap, xCoord - offsetX, yCoord - offsetY, pieceWidth + offsetX, pieceHeight + offsetY);
                 PuzzlePiece piece = new PuzzlePiece(getApplicationContext());
                 piece.setImageBitmap(pieceBitmap);
@@ -152,48 +153,47 @@ public class MakingPuzzleActivity extends AppCompatActivity {
                 piece.pieceWidth = pieceWidth + offsetX;
                 piece.pieceHeight = pieceHeight + offsetY;
 
-                // this bitmap will hold our final puzzle piece image
+                // Este mapa de bits contendrá nuestra imagen final de la pieza del rompecabezas
                 Bitmap puzzlePiece = Bitmap.createBitmap(pieceWidth + offsetX, pieceHeight + offsetY, Bitmap.Config.ARGB_8888);
 
-                // draw path
                 int bumpSize = pieceHeight / 4;
                 Canvas canvas = new Canvas(puzzlePiece);
                 Path path = new Path();
                 path.moveTo(offsetX, offsetY);
 
-                if (row == 0) // top side piece
+                if (row == 0) // pieza lateral superior
                     path.lineTo(pieceBitmap.getWidth(), offsetY);
-                else { // top bump
+                else { // protuberancia superior
                     path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3, offsetY);
                     path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5, offsetY - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, offsetY);
                     path.lineTo(pieceBitmap.getWidth(), offsetY);
                 }
 
-                if (col == cols - 1) // right side piece
+                if (col == cols - 1) // pieza lateral derecha
                     path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
-                else { // right bump
+                else { // protuberancia derecha
                     path.lineTo(pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
                     path.cubicTo(pieceBitmap.getWidth() - bumpSize,offsetY + (pieceBitmap.getHeight() - offsetY) / 6, pieceBitmap.getWidth() - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, pieceBitmap.getWidth(), offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
                     path.lineTo(pieceBitmap.getWidth(), pieceBitmap.getHeight());
                 }
 
-                if (row == rows - 1) // bottom side piece
+                if (row == rows - 1) // pieza lateral inferior
                     path.lineTo(offsetX, pieceBitmap.getHeight());
-                else { // bottom bump
+                else { // protuberancia inferior
                     path.lineTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 3 * 2, pieceBitmap.getHeight());
                     path.cubicTo(offsetX + (pieceBitmap.getWidth() - offsetX) / 6 * 5,pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 6, pieceBitmap.getHeight() - bumpSize, offsetX + (pieceBitmap.getWidth() - offsetX) / 3, pieceBitmap.getHeight());
                     path.lineTo(offsetX, pieceBitmap.getHeight());
                 }
 
-                if (col == 0) // left side piece
+                if (col == 0) // pieza lateral izquierda
                     path.close();
-                else { // left bump
+                else { // protuberancia izquierda
                     path.lineTo(offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3 * 2);
                     path.cubicTo(offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6 * 5, offsetX - bumpSize, offsetY + (pieceBitmap.getHeight() - offsetY) / 6, offsetX, offsetY + (pieceBitmap.getHeight() - offsetY) / 3);
                     path.close();
                 }
 
-                // mask the piece
+                // Le ponemos una máscara a la pieza
                 Paint paint = new Paint();
                 paint.setColor(0XFF000000);
                 paint.setStyle(Paint.Style.FILL);
@@ -202,21 +202,21 @@ public class MakingPuzzleActivity extends AppCompatActivity {
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 canvas.drawBitmap(pieceBitmap, 0, 0, paint);
 
-                // draw a white border
+                // Pintamos un borde blanco
                 Paint border = new Paint();
                 border.setColor(0X80FFFFFF);
                 border.setStyle(Paint.Style.STROKE);
                 border.setStrokeWidth(8.0f);
                 canvas.drawPath(path, border);
 
-                // draw a black border
+                // Pintamos un borde negro
                 border = new Paint();
                 border.setColor(0X80000000);
                 border.setStyle(Paint.Style.STROKE);
                 border.setStrokeWidth(3.0f);
                 canvas.drawPath(path, border);
 
-                // set the resulting bitmap to the piece
+                //establecer el mapa de bits resultante a la pieza
                 piece.setImageBitmap(puzzlePiece);
 
                 pieces.add(piece);
@@ -234,27 +234,27 @@ public class MakingPuzzleActivity extends AppCompatActivity {
         if (imageView == null || imageView.getDrawable() == null)
             return ret;
 
-        // Get image dimensions. Get image matrix values and place them in an array
+        // Obtenemos los valores de la imagen y los colocamos en una matriz
         float[] f = new float[9];
         imageView.getImageMatrix().getValues(f);
 
-        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
+        // Extraemos los valores de la escala utilizando las constantes.
         final float scaleX = f[Matrix.MSCALE_X];
         final float scaleY = f[Matrix.MSCALE_Y];
 
-        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
+        // Obtenemos el drawable
         final Drawable d = imageView.getDrawable();
         final int origW = d.getIntrinsicWidth();
         final int origH = d.getIntrinsicHeight();
 
-        // Calculate the actual dimensions
+        // Calculamos las dimensiones actuales
         final int actW = Math.round(origW * scaleX);
         final int actH = Math.round(origH * scaleY);
 
         ret[2] = actW;
         ret[3] = actH;
 
-        // Get image position. We assume that the image is centered into ImageView
+        // Obtenemos la posición de la imagen. Asumimos que la imagen están centrada en el ImageView
         int imgViewW = imageView.getWidth();
         int imgViewH = imageView.getHeight();
 
@@ -281,25 +281,25 @@ public class MakingPuzzleActivity extends AppCompatActivity {
     }
 
     private void setPicFromPath(String mCurrentPhotoPath, ImageView imageView) {
-        // Get the dimensions of the View
+        // Obtenemos las dimensiones del View
         int targetW = imageView.getWidth();
         int targetH = imageView.getHeight();
 
-        // Get the dimensions of the bitmap
+        // Obtenemos las dimensiones del bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         int photoW = bmOptions.outWidth;
         int photoH = bmOptions.outHeight;
 
-        // Decode the image file into a Bitmap sized to fill the View
+        // Decodificamos la imagen en un Bitmap con tamaño para llenar el view
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = Math.min(photoW/targetW, photoH/targetH); // how much to scale down the image
 
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         Bitmap rotatedBitmap = bitmap;
 
-        // rotate bitmap if needed
+        // rotamos el Bitmap si es necesario
         try {
             ExifInterface ei = new ExifInterface(mCurrentPhotoPath);
             int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);

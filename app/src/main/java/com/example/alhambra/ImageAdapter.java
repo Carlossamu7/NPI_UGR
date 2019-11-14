@@ -21,29 +21,23 @@ public class ImageAdapter extends BaseAdapter{
     private AssetManager am;
     private String[] files;
 
-    public ImageAdapter(Context c) {
+    ImageAdapter(Context c) {
         mContext = c;
         am = mContext.getAssets();
-        try {
-            files  = am.list("img");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { files  = am.list("img"); }
+        catch (IOException e) { e.printStackTrace(); }
     }
 
     public int getCount() {
         return files.length;
     }
 
-    public Object getItem(int position) {
-        return null;
-    }
+    public Object getItem(int position) { return null; }
 
-    public long getItemId(int position) {
-        return 0;
-    }
+    public long getItemId(int position) { return 0; }
 
     // Creamos un nuevo ImageView para cada elemento al que hace referencia el adaptador
+    @SuppressLint("InflateParams")
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
@@ -85,21 +79,18 @@ public class ImageAdapter extends BaseAdapter{
 
         try {
             InputStream is = am.open("img/" + assetName);
-            // Dimesiones del bitmap
+            // Dimensiones del Bitmap
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
             int photoW = bmOptions.outWidth;
             int photoH = bmOptions.outHeight;
 
-            // Determinamos cuánto escalar la imagen
-            int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-
             is.reset();
 
             // Decodificamos el archivo de imagen en un Bitmap de tamaño para llenar la vista
             bmOptions.inJustDecodeBounds = false;
-            bmOptions.inSampleSize = scaleFactor;
+            bmOptions.inSampleSize = Math.min(photoW/targetW, photoH/targetH);  // factor escalado
 
             return BitmapFactory.decodeStream(is, new Rect(-1, -1, -1, -1), bmOptions);
         } catch (IOException e) {
