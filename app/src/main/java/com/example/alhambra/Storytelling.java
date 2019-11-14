@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -32,10 +34,9 @@ public class Storytelling extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
-    Button mCaptureBtn;
+    FloatingActionButton mCaptureBtn;
     TextView textV;
     ImageView imageV;
-
 
     Uri image_uri;
 
@@ -49,6 +50,7 @@ public class Storytelling extends AppCompatActivity {
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Alhambra: Storytelling");
 
         mCaptureBtn = findViewById(R.id.button);
         textV = findViewById(R.id.tvStorytelling);
