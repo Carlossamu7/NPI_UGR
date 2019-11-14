@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvStorytelling"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#00FFFFFF"
@@ -30,10 +30,10 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom"
+            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imStorytelling" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imStorytelling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/guia_turistico" />
