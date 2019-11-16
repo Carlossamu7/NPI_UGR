@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Alhambra</string>
+    <string name="title_activity_maps">Alhambra</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_splash_screen"></string>
-    <string name="Descripcion"></string>
     <string name="welcome_message">¡Bienvenidos a la experiencia virtual de la Alhambra!</string>
     <string name="button_main_text">Proyecto Alhambra!</string>
     <string name="button_puzzle_text">Puzzle</string>
@@ -10,5 +9,4 @@
     <string name="button_storytelling_text">Storytelling</string>
     <string name="text_acelerometer">Reload</string>
     <string name="text_swap">Swap your weapon</string>
-
 </resources>

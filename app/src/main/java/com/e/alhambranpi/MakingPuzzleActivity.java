@@ -1,4 +1,4 @@
-package com.example.alhambra;
+package com.e.alhambranpi;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,15 +14,13 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.exifinterface.media.ExifInterface;
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.exifinterface.media.ExifInterface;
 
 import java.io.IOException;
 import java.io.InputStream;

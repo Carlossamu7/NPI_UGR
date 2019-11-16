@@ -1,8 +1,4 @@
-package com.example.alhambra;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.e.alhambranpi;
 
 import android.Manifest;
 import android.content.ContentValues;
@@ -17,16 +13,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
 
 
 public class Storytelling extends AppCompatActivity {
@@ -169,7 +167,7 @@ public class Storytelling extends AppCompatActivity {
                 break;
             case 1:
                 textV.setText("Encontraste mi Palacio! Yo soy Carlos V y esta una construcción renacentista " +
-                        "situada en la colina de la Alhambra de la ciudad española de Granada, en Andalucía.");
+                        " situada en la colina de la Alhambra de la ciudad española de Granada, en Andalucía.");
                 imageV.setImageResource(R.drawable.carlosv);
                 break;
             default:

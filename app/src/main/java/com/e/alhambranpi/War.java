@@ -1,4 +1,4 @@
-package com.example.alhambra;
+package com.e.alhambranpi;
 
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 
 public class War extends AppCompatActivity implements SensorEventListener {

@@ -1,4 +1,4 @@
-package com.example.alhambra;
+package com.e.alhambranpi;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.alhambra", appContext.getPackageName());
+        assertEquals("com.e.alhambranpi", appContext.getPackageName());
     }
 }
