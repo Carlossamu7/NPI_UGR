@@ -1,10 +1,10 @@
-package com.example.alhambra;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.e.alhambranpi;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, MapsActivity.class);
                 startActivity(i);
             }
         }, 1000);

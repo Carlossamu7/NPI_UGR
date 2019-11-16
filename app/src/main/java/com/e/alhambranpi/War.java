@@ -1,4 +1,4 @@
-package com.example.alhambra;
+package com.e.alhambranpi;
 
 import android.graphics.Color;
 import android.hardware.Sensor;
@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static android.os.SystemClock.sleep;
-
 
 public class War extends AppCompatActivity implements SensorEventListener {
 

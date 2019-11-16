@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity" >
+
+    <Button
+        android:id="@+id/buttonPuzzle"
+        android:layout_width="163dp"
+        android:layout_height="63dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:layout_centerInParent="true"
+        android:backgroundTintMode="src_over"
+        android:onClick="puzzle"
+        android:text="@string/button_puzzle_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <Button
+        android:id="@+id/buttonWar"
+        android:layout_width="163dp"
+        android:layout_height="63dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:layout_centerInParent="true"
+        android:backgroundTintMode="src_over"
+        android:onClick="war"
+        android:text="@string/button_war_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <Button
+        android:id="@+id/buttonStorytelling"
+        android:layout_width="163dp"
+        android:layout_height="63dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:layout_centerInParent="true"
+        android:backgroundTintMode="src_over"
+        android:onClick="storytelling"
+        android:text="@string/button_storytelling_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+</fragment>

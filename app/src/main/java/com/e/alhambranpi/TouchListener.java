@@ -1,4 +1,4 @@
-package com.example.alhambra;
+package com.e.alhambranpi;
 
 import android.annotation.SuppressLint;
 import android.view.MotionEvent;
