@@ -8,40 +8,30 @@
     android:layout_height="match_parent"
     tools:context=".MapsActivity" >
 
-    <Button
-        android:id="@+id/buttonPuzzle"
-        android:layout_width="163dp"
-        android:layout_height="63dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:layout_centerInParent="true"
-        android:backgroundTintMode="src_over"
-        android:onClick="puzzle"
-        android:text="@string/button_puzzle_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/grupoFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp">
 
-    <Button
-        android:id="@+id/buttonWar"
-        android:layout_width="163dp"
-        android:layout_height="63dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:layout_centerInParent="true"
-        android:backgroundTintMode="src_over"
-        android:onClick="war"
-        android:text="@string/button_war_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bStorytelling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_slideshow" />
 
-    <Button
-        android:id="@+id/buttonStorytelling"
-        android:layout_width="163dp"
-        android:layout_height="63dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp"
-        android:layout_centerInParent="true"
-        android:backgroundTintMode="src_over"
-        android:onClick="storytelling"
-        android:text="@string/button_storytelling_text"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bWar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_always_landscape_portrait" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/bPuzzle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_gallery" />
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </fragment>

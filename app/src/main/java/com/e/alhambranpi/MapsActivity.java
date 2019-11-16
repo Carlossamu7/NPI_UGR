@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +33,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     double lat = 0.0;
     double lng = 0.0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Button bPuzzle = (Button) findViewById(R.id.buttonPuzzle);
+        final FloatingActionButton bPuzzle = findViewById(R.id.bPuzzle);
         bPuzzle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +52,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        Button bWar = findViewById(R.id.buttonWar);
+        final FloatingActionButton bWar = findViewById(R.id.bWar);
         bWar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        Button bStorytelling = findViewById(R.id.buttonStorytelling);
+        final FloatingActionButton bStorytelling = findViewById(R.id.bStorytelling);
         bStorytelling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
