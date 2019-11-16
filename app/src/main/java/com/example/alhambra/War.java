@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static android.os.SystemClock.sleep;
 
 
 public class War extends AppCompatActivity implements SensorEventListener {
@@ -21,7 +22,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
     private int disparo = 0;
     private int recarga = 0;
     private int swapping = 0;
-    private int precision = 8;
+    private int precision = 7;
 
 
     @Override
@@ -38,15 +39,11 @@ public class War extends AppCompatActivity implements SensorEventListener {
 
     public void reload(float x){
 
-        if(x<=-precision && recarga == 0){
+        if (x >= -precision && recarga == 0) {
             recarga++;
-        }
-        else if (x>-precision && recarga == 1){
-            recarga++;
-        }
-        else if(recarga == 2) {
-            recarga++;
+        } else if (x < -precision && recarga == 1) {
             soundReload();
+            recarga++;
             text.setText("");
             text.append("Shoot");
         }
@@ -56,14 +53,8 @@ public class War extends AppCompatActivity implements SensorEventListener {
 
         if(x<=precision && disparo == 0){
             disparo++;
-            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
         }
         else if (x>precision && disparo == 1){
-            disparo++;
-            getWindow().getDecorView().setBackgroundColor(Color.GRAY);
-
-        }
-        else if(disparo == 2) {
             disparo = 0;
             recarga = 0;
             soundShot();
@@ -72,23 +63,19 @@ public class War extends AppCompatActivity implements SensorEventListener {
         }
     }
 
-    public void swap(float y){
+    public boolean swap(float y){
 
         if(y<=precision && swapping == 0){
             swapping++;
-            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
         }
         else if (y>precision && swapping == 1){
-            swapping++;
-            getWindow().getDecorView().setBackgroundColor(Color.GRAY);
-
-        }
-        else if(swapping == 2) {
-            swapping = 0;
             soundSwap();
+            swapping = 0;
             text.setText("");
             text.append("Swapped");
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -102,10 +89,16 @@ public class War extends AppCompatActivity implements SensorEventListener {
         y = event.values[1];
         z = event.values[2];
 
-        swap(y);
-        reload(x);
-        if(recarga == 3) shoot(x);
+        /*
 
+        if(z>=-4.5 && z <= 4.5) {
+            if (recarga < 2) reload(x);
+            else if (recarga == 2) shoot(x);
+        }
+*/
+        if(x >= -2 && x <= 2) swap(y);
+        text.setText("");
+        text.append("\n" + "X: " + x + "\n" + "Y: " + y + "\n" +"Z: " + z);
     }
 
 
