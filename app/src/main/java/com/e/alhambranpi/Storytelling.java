@@ -48,7 +48,7 @@ public class Storytelling extends AppCompatActivity {
 
         // Activa la flecha de ir hacia atrás en la jerarquía de activities
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Alhambra: Storytelling");
+        getSupportActionBar().setTitle("Storytelling!");
 
         mCaptureBtn = findViewById(R.id.button);
         textV = findViewById(R.id.tvStorytelling);

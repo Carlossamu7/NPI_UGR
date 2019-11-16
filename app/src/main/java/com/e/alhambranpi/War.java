@@ -28,6 +28,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_war);
+        getSupportActionBar().setTitle("Recarga y dispara!");
         text = (TextView)findViewById(R.id.textAcelerometro);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
