@@ -7,6 +7,6 @@
     <string name="button_puzzle_text">Puzzle</string>
     <string name="button_war_text">War</string>
     <string name="button_storytelling_text">Storytelling</string>
-    <string name="text_acelerometer">Reload</string>
-    <string name="text_swap">Swap your weapon</string>
+    <string name="text_acelerometer">Arco</string>
+    <string name="text_swap">Recarga o elige tu arma</string>
 </resources>
