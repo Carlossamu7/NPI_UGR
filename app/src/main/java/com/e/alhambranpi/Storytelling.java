@@ -67,7 +67,6 @@ public class Storytelling extends AppCompatActivity {
                     }
                     else{
                         openCamera();
-
                     }
                 }
                 else{
