@@ -61,26 +61,12 @@ public class Storytelling extends AppCompatActivity {
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
                 if (checkSelfPermission(Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_DENIED ||
                         checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                                PackageManager.PERMISSION_DENIED){
+                                PackageManager.PERMISSION_DENIED) {
                     String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
                     requestPermissions(permission, PERMISSION_CODE);
-=======
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if (checkSelfPermission(Manifest.permission.CAMERA) ==
-                            PackageManager.PERMISSION_DENIED ||
-                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                                    PackageManager.PERMISSION_DENIED){
-                        String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        requestPermissions(permission, PERMISSION_CODE);
-                    }
-                    else{
-                        openCamera();
-                    }
->>>>>>> d582d933c3194de9866f8365fa9b18695e07c3fd
                 }
                 else{
                     openCamera();
