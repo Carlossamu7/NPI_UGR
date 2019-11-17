@@ -1,6 +1,10 @@
 package com.e.alhambranpi;
 
 import androidx.annotation.NonNull;
+<<<<<<< HEAD
+=======
+import androidx.core.app.ActivityCompat;
+>>>>>>> d582d933c3194de9866f8365fa9b18695e07c3fd
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
@@ -11,8 +15,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.Toast;
+=======
+>>>>>>> d582d933c3194de9866f8365fa9b18695e07c3fd
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.android.gms.maps.CameraUpdate;
@@ -25,23 +33,32 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
     private GoogleMap mMap;
 
     private Marker ubicacion;
     double lat = 0.0;
     double lng = 0.0;
 
+<<<<<<< HEAD
     private static final int PERMISSION_CODE = 2000;
+=======
+    private static final int REQUEST_GPS = 1000;
+>>>>>>> d582d933c3194de9866f8365fa9b18695e07c3fd
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, REQUEST_GPS);
+        }
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        assert mapFragment != null;
         mapFragment.getMapAsync(this);
 
         final FloatingActionButton bPuzzle = findViewById(R.id.bPuzzle);
@@ -72,16 +89,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -96,8 +103,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.addMarker(new MarkerOptions().position(palacioCarlosV).title("Palacio de Carlos V: Storytelling"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alhambra, 16));
-
-
     }
 
     private void agregarMarcador(double lat, double lng) {
@@ -145,6 +150,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     };
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_GPS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                miUbicacion();
+            }
+        }
+    }
+
     private void miUbicacion() {
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_DENIED ||
@@ -160,15 +174,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void poner_ubicacion() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    Activity#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for Activity#requestPermissions for more details.
             return;
         }
+<<<<<<< HEAD
+=======
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        assert locationManager != null;
+>>>>>>> d582d933c3194de9866f8365fa9b18695e07c3fd
         Location location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
         actualizarUbicacion(location);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
