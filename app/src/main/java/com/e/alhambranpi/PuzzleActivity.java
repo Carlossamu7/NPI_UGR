@@ -31,6 +31,7 @@ public class PuzzleActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 2;
+    private static final int PERMISSION_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,12 @@ public class PuzzleActivity extends AppCompatActivity {
     }
 
     public void onImageFromCameraClick(View view) {
+        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+            String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            requestPermissions(permission, PERMISSION_CODE);
+        }
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
@@ -96,9 +103,12 @@ public class PuzzleActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE)
+        if (requestCode == REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 onImageFromCameraClick(new View(this));
+            else
+                Toast.makeText(this, "Permiso denegado...", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
