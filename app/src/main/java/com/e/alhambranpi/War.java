@@ -24,7 +24,6 @@ public class War extends AppCompatActivity implements SensorEventListener {
     private int recarga = 0;
     private int swapping = 0;
     private int precision = 7;
-    private double giro = 4.5;
     private boolean arma_seleccionada = false;
     private int arma = 0; //arco = 0, pistola = 1, cañon = 2
 
@@ -95,6 +94,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
         y = event.values[1];
         z = event.values[2];
 
+        double giro = 4.5;
         if(z>= -giro && z <= giro) {
             if (recarga < 2) reload(x);
             else if (recarga == 2) shoot(x);
@@ -116,7 +116,6 @@ public class War extends AppCompatActivity implements SensorEventListener {
             texto_arriba.setText("");
             texto_arriba.append("Cañón");
         }
-
     }
 
 
