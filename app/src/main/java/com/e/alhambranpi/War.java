@@ -6,6 +6,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
 
     private TextView texto_arriba;
     private TextView texto_abajo;
+    private ImageView imArma;
     private SensorManager sensorManager;
     private Sensor acelerometro;
     private int disparo = 0;
@@ -33,9 +35,9 @@ public class War extends AppCompatActivity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_war);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Alhabatalla");
-        texto_arriba = (TextView)findViewById(R.id.textAcelerometro);
-        texto_abajo = (TextView)findViewById(R.id.textSwap);
-
+        texto_arriba = findViewById(R.id.textAcelerometro);
+        texto_abajo = findViewById(R.id.textSwap);
+        imArma = findViewById(R.id.imageView2);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         assert sensorManager != null;
@@ -51,8 +53,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
             soundReload();
             arma_seleccionada = true;
             recarga++;
-            texto_abajo.setText("");
-            texto_abajo.append("¡Dispara!");
+            texto_abajo.setText("¡Dispara!");
         }
     }
 
@@ -66,8 +67,7 @@ public class War extends AppCompatActivity implements SensorEventListener {
             recarga = 0;
             soundShot();
             arma_seleccionada = false;
-            texto_abajo.setText("");
-            texto_abajo.append("Recarga o elige tu arma");
+            texto_abajo.setText("Recarga o elige tu arma");
         }
     }
 
@@ -102,19 +102,16 @@ public class War extends AppCompatActivity implements SensorEventListener {
         else if(x >= -giro && x <= giro && !arma_seleccionada) swap(y, z);
 
         if(arma == 0) {
-            getWindow().getDecorView().setBackgroundResource(R.drawable.arco);
-            texto_arriba.setText("");
-            texto_arriba.append("Arco");
+            imArma.setImageResource(R.drawable.arco);
+            texto_arriba.setText("Arco");
         }
         else if (arma == 1) {
-            getWindow().getDecorView().setBackgroundResource(R.drawable.esco);
-            texto_arriba.setText("");
-            texto_arriba.append("Escopeta");
+            imArma.setImageResource(R.drawable.esco);
+            texto_arriba.setText("Escopeta");
         }
         else {
-            getWindow().getDecorView().setBackgroundResource(R.drawable.cannon);
-            texto_arriba.setText("");
-            texto_arriba.append("Cañón");
+            imArma.setImageResource(R.drawable.cannon);
+            texto_arriba.setText("Cañón");
         }
     }
 

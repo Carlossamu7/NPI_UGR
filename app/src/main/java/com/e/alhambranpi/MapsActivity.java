@@ -1,5 +1,6 @@
 package com.e.alhambranpi;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
@@ -11,16 +12,14 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -32,6 +31,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker ubicacion;
     double lat = 0.0;
     double lng = 0.0;
+
+    private static final int PERMISSION_CODE = 2000;
 
 
     @Override
@@ -47,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bPuzzle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), PuzzleActivity.class);
+                Intent intent = new Intent(v.getContext(), PuzzleActivity.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -56,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bWar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), War.class);
+                Intent intent = new Intent(v.getContext(), War.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -65,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bStorytelling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (v.getContext(), Storytelling.class);
+                Intent intent = new Intent(v.getContext(), Storytelling.class);
                 startActivityForResult(intent, 0);
             }
         });
@@ -86,14 +87,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         miUbicacion();
 
-        // Add a marker in Sydney and move the camera
-
         LatLng alhambra = new LatLng(37.1760552, -3.5880802);
         LatLng puertaJusticia = new LatLng(37.176198, -3.590251);
         LatLng palacioCarlosV = new LatLng(37.176865, -3.589958);
         /*mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marcador_round))
                 .anchor(0.0f, 1.0f).position(puertaJusticia).title("Puerta de la Justicia: Storytelling"));
-                */
+        */
 
         mMap.addMarker(new MarkerOptions().position(palacioCarlosV).title("Palacio de Carlos V: Storytelling"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(alhambra, 16));
@@ -110,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ubicacion = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Posición actual " + lat + "," + lng)
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)));
 
-         */
+        */
 
         ubicacion = mMap.addMarker(new MarkerOptions().position(coordenadas).title("Posición actual " + lat + "," + lng));
         mMap.animateCamera(miUbicacion);
@@ -121,9 +120,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             lat = location.getLatitude();
             lng = location.getLongitude();
             agregarMarcador(lat, lng);
-        }
-        else{
-            System.out.println("NO ACTUALIZAR UBICACION");
         }
     }
 
@@ -150,6 +146,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     };
 
     private void miUbicacion() {
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_DENIED ||
+                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) ==
+                        PackageManager.PERMISSION_DENIED) {
+            String[] permission = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            requestPermissions(permission, PERMISSION_CODE);
+        } else {
+            poner_ubicacion();
+        }
+    }
+
+    private void poner_ubicacion() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    Activity#requestPermissions
@@ -159,15 +168,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // to handle the case where the user grants the permission. See the documentation
             // for Activity#requestPermissions for more details.
             return;
-        } else {
-            System.out.println("NO PERMISOS");
         }
-
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
         actualizarUbicacion(location);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListener);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case PERMISSION_CODE:{
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    poner_ubicacion();
+                }
+                else{
+                    Toast.makeText(this, "Permiso denegado...", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+
 
     protected void puzzle(View view) {
         // Start puzzle in response to button

@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/alhambra"
     tools:context=".Storytelling">
 
 
@@ -25,10 +27,11 @@
             android:id="@+id/tvStorytelling"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00FFFFFF"
+            android:background="#66FFFFFF"
             android:text="Hola! Bienvenido a la Alhambra! Si quieres información de tu visita, hazle fotos sobre lo que quieras saber y mis amigos y yo te contaremos muchas cosas sobre eso!"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,17 +74,17 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
       -->
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:layout_marginBottom="16dp"
-      android:src="@drawable/ic_photo_camera_black_24dp"
-      android:tint="@android:color/white"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_photo_camera_black_24dp"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
