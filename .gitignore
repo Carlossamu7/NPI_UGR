@@ -1,5 +1,5 @@
 *.iml
-.gradle
+/NPI-ProyectoAlhambra/.gradle
 /local.properties
 /.idea/caches
 /.idea/libraries
