@@ -1,0 +1,3 @@
+#JSGF V1.0;
+grammar ciudades;
+public <ciudades> = jaen | cordoba | sevilla | huelva | cadiz | malaga | granada | almeria;
