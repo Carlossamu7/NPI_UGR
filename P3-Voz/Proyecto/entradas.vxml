@@ -1,0 +1,7 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<form id="entradas">
+		<block>
+			<prompt>Informacion sobre las entradas.</prompt>
+		</block>
+	</form>
+</vxml>
