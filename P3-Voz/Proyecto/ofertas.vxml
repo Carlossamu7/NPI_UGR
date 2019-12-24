@@ -1,0 +1,7 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<form id="ofertas">
+		<block>
+			<prompt>Informacion sobre las ofertas.</prompt>
+		</block>
+	</form>
+</vxml>

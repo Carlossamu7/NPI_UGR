@@ -1,0 +1,11 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<menu>
+		<prompt>Sobre que desea información?. </prompt>
+		<enumerate/>
+			<choice next="./disponibilidad.vxml"> Disponibilidad </choice>
+			<choice next="./precios.vxml"> Precios </choice>
+			<choice next="./consignas.vxml"> Consignas </choice>
+			<choice next="./ofertas.vxml"> Ofertas </choice>
+		<enumerate/>
+	</menu>
+</vxml>

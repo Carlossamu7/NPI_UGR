@@ -1,7 +1,7 @@
 <vxml version="2.1" xml:lang="es-ES">
 	<form id="entradas">
 		<block>
-			<prompt>Informacion sobre las entradas.</prompt>
+			<prompt>Bienvenido a la compra de entradas de la Alhambra.</prompt>
 		</block>
 	</form>
 </vxml>

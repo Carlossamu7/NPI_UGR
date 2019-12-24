@@ -1,0 +1,7 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<form id="consignas">
+		<block>
+			<prompt>Informacion sobre las consignas.</prompt>
+		</block>
+	</form>
+</vxml>
