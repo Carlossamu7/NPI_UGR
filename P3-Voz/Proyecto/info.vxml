@@ -6,6 +6,5 @@
 			<choice next="./precios.vxml"> Precios </choice>
 			<choice next="./consignas.vxml"> Consignas </choice>
 			<choice next="./ofertas.vxml"> Ofertas </choice>
-		<enumerate/>
 	</menu>
 </vxml>
