@@ -1,7 +1,12 @@
 <vxml version="2.1" xml:lang="es-ES">
 	<form id="consignas">
 		<block>
-			<prompt>Informacion sobre las consignas.</prompt>
+			<prompt>
+				<audio src="consignas.wav">
+					<!-- Texto alternativo por si no se escucha el fichero consignas.wav-->
+					<emp>Informacion sobre las consignas. Hay problemas con el fichero de audio. </emp>
+				</audio>
+			</prompt>
 		</block>
 	</form>
 </vxml>
