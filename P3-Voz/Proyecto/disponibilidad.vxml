@@ -1,35 +1,18 @@
 <vxml version="2.1" xml:lang="es-ES">
-	<!--DIAPO 29 <link event="exit"><grammar>adios|terminar|finalizar</grammar> </link>-->
-	<form id="disponibilidad">
-		<block>
-			<prompt bargein="false"> Informacion sobre disponibilidad </prompt>
-		</block>
-		<!-- obtencion fecha visita
-		<grammar src="gramativaFecha.jsgf"/>
-		<initial name="fechaVisita"
-			<prompt bargein="false"> Indique el dia y el mes que desea realizar su visita a la Alhambra</prompt>
-			<nomatch count="1"> Por ejemplo, di el uno de febrero </nomatch>
-			<nomatch count="2"> Lo siento, sigo sin compreder lo que dices, voy a solicitarte
-				la informacion por partes
-				<assign name="fechaVisita" expr="true"/>
-				<reprompt/>
-			</nomatch>
-		</initial>
-		-->
+	<form id="disponibilidad" scope="document">
 		<field name="diaVisita">
 			<prompt>Indique el dia que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
-			<!-- <catch event="help">Di el dia de hacer la visita, por ejemplo, el veintidos</catch>-->
+			<help>Di el dia de hacer la visita, por ejemplo, el veintidos</help>
 		</field>
 		<field name="mesVisita">
 			<prompt>Indique el mes que quiere hacer la visita</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
 			<!--<catch event="help">Di el mes de hacer la visita, por ejemplo, febrero</catch>-->
 		</field>
-
 		<filled mode="all">
 			<prompt>Existen entradas disponibles para el dia <value expr="diaVisita"/>
-				del mes <value expr="mesVisita"/>.
+				de <value expr="mesVisita"/>.
 			</prompt>
 		</filled>
 	</form>

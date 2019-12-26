@@ -1,8 +1,8 @@
 #JSGF V1.0;
 grammar gramaticaMes;
-public <mesVisita> = [<de>] <mes> {this.mesVisita=$mes};
+public <gramaticaMes> = [<de>] [<mes> {this.mesVisita=$mes}];
 
-<de> = de
+<de> = de | en | el mes;
 
 <mes> = enero |	febrero |	marzo |	abril |	mayo | junio | julio | agosto | septiembre |
 		octubre | noviembre | diciembre ;
