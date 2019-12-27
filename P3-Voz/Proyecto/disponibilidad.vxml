@@ -1,14 +1,17 @@
 <vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
 	<form id="disponibilidad" scope="document">
 		<field name="diaVisita">
 			<prompt>Indique el dia que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
-			<help>Di el dia de hacer la visita, por ejemplo, el veintidos</help>
+			<catch event="help"> Di el nombre de la ciudad, por ejemplo, Loja</catch>
 		</field>
 		<field name="mesVisita">
 			<prompt>Indique el mes que quiere hacer la visita</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
-			<!--<catch event="help">Di el mes de hacer la visita, por ejemplo, febrero</catch>-->
+			<help> Di el nombre de la ciudad, por ejemplo, Loja</help>
 		</field>
 		<filled mode="all">
 			<prompt>Existen entradas disponibles para el dia <value expr="diaVisita"/>
