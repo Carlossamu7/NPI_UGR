@@ -2,21 +2,43 @@
 	<link event="help">
 		<grammar src="gramaticaAyuda.jsgf"/>
 	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+	
 	<form id="disponibilidad" scope="document">
 		<field name="diaVisita">
 			<prompt>Indique el dia que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
-			<catch event="help"> Di el nombre de la ciudad, por ejemplo, Loja</catch>
+			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
 		</field>
 		<field name="mesVisita">
 			<prompt>Indique el mes que quiere hacer la visita</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
-			<help> Di el nombre de la ciudad, por ejemplo, Loja</help>
+			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero</help>
+			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
 		<filled mode="all">
 			<prompt>Existen entradas disponibles para el dia <value expr="diaVisita"/>
 				de <value expr="mesVisita"/>.
 			</prompt>
 		</filled>
+	</form>
+
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#disponibilidad"/>
+				</if>
+			</filled>
+		</field>
 	</form>
 </vxml>
