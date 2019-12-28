@@ -1,0 +1,7 @@
+#JSGF V1.0;
+grammar gramNombreApellidos;
+public <nombreApellidos> = <nombre> <apellido> <apellido> ;
+
+<nombre> = Alberto | Miguel | Carlos | Ramon ;
+
+<apellido> = Estepa | Fernandez | Robles | Urquiza | Sanchez | Muñoz | Lopez | Cozar | Delgado ;

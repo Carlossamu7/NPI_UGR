@@ -1,7 +1,41 @@
 <vxml version="2.1" xml:lang="es-ES">
 	<form id="ofertas">
-		<block>
-			<prompt>Informacion sobre las ofertas.</prompt>
-		</block>
-	</form>
+        <field name="option">
+            <prompt>
+				La informacion para las ofertas es la siguiente:
+				Si usted no posee ninguna condicion especial diga o pulse 1.
+				Si usted es granadino, menor de 12 anios o profesor diga o pulse 2.
+				Si usted es familia numerosa, minusvalido, menor de 25 anios o mayor de 65 diga o pulse 3.
+				Si quiere las ofertas del mes diga o pulse 4.
+            </prompt>
+            <option value="1" dtmf="1">1</option>
+            <option value="2" dtmf="2">2</option>
+			<option value="3" dtmf="3">3</option>
+			<option value="4" dtmf="4">4</option>
+            <filled>
+                <if cond="option=='1'">
+					<prompt>
+						El precio general de la visita es de 14,85 euros.
+		            </prompt>
+				<elseif cond="option=='2'"/>
+					<prompt>
+						El precio para granadinos, menores de 12 anios acompaniados y profesores es gratuito.
+		            </prompt>
+				<elseif cond="option=='3'"/>
+					<prompt>
+						El precio para familias numerosas, minusvalidos, jovenes menores de 25 y personas mayores de 65 anios es de 9,54 euros.
+		            </prompt>
+				<elseif cond="option=='4'"/>
+					<prompt>
+						La oferta de este mes es para las visitas de los lunes las cuales tienen un descuento del 30 por ciento.
+		            </prompt>
+				<!--Aquí nunca debe entrar-->
+                <else/>
+					<prompt>
+						Lo siento no ha seleccionado ninguna opcion correcta.
+					</prompt>
+                </if>
+            </filled>
+        </field>
+    </form>
 </vxml>
