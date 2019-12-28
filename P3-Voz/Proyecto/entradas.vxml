@@ -1,7 +1,23 @@
 <vxml version="2.1" xml:lang="es-ES">
 	<form id="entradas">
-		<block>
-			<prompt>Bienvenido a la compra de entradas de la Alhambra.</prompt>
-		</block>
+		<field name="tipoVisita">
+			<prompt>Cual es el tipo de visita que quieres realizar?</prompt>
+			<grammar src="gramaticaTipoVisita.jsgf"/>
+		</field>
+		<!--<field name="nombreApellidos">
+			<prompt>Diga su nombre y apellidos por favor.</prompt>
+			<grammar src="gramaticaNombreApellidos.jsgf"/>
+		</field>-->
+		<!-- Dia de la visita -->
+		<!-- Mes de la visita -->
+		<!-- Numero de tlf -->
+		<!-- Numero cuenta bancaria -->
+		<filled mode="all">
+			<prompt>Ha comprado usted su entrada.
+				     Tipo de visita: <value expr="tipoVisita"/>.
+					 <!--Nombre: <value expr="nombreApellidos"/>.-->
+					Gracias y espero que vuelva pronto!
+			</prompt>
+		</filled>
 	</form>
 </vxml>
