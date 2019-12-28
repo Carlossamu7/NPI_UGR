@@ -4,5 +4,5 @@ public <gramaticaMes> = [<de>] [<mes> {this.mesVisita=$mes}];
 
 <de> = de | en | el mes;
 
-<mes> = enero |	febrero |	marzo |	abril |	mayo | junio | julio | agosto | septiembre |
+<mes> = enero |	febrero | marzo | abril | mayo | junio | julio | agosto | septiembre |
 		octubre | noviembre | diciembre ;

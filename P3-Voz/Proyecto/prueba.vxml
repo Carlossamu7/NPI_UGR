@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1" application="root.vxml">
+    <form id="init">
+        <block>
+            <prompt xml:lang="es-es">
+            Bienvenido al servicio de voz asistente a pilotos virtuales.
+            </prompt>
+            <prompt xml:lang="en-us">
+            Welcome to the voice service for virtual pilots asistance.
+            </prompt>
+            <goto next="#getLanguage"/>
+        </block>
+    </form>
+    <form id="getLanguage">
+        <field name="language">
+            <nomatch>
+                <prompt xml:lang="es-es">
+                Lo siento, esa opción es incorrecta.
+                </prompt>
+                <prompt xml:lang="en">
+                I'm sorry, that is an invalid option.
+                </prompt>
+                <reprompt/>
+            </nomatch>
+            <break time="2000"/>
+            <prompt xml:lang="es-es">
+                Para idioma Español, pulsa 1.
+            </prompt>
+            <prompt xml:lang="en">
+                For English language, press 2
+            </prompt>
+            <grammar> [dtmf-1 dtmf-2] </grammar>
+            <filled>
+                <if cond="language=='1'">
+                    <goto next="#get_option_es"/>
+                <elseif cond="language=='2'"/>
+                    <goto next="#get_option_en"/>
+                </if>
+            </filled>
+        </field>
+    </form>
+    <form id="get_option_es">
+        <field name="option">
+            <nomatch>
+            <prompt xml:lang="es-es">
+                Lo siento, no te he entendido,
+                por favor, inténtalo de nuevo.
+            </prompt>
+            <reprompt/>
+            </nomatch>
+            <prompt xml:lang="es-es">
+                Por favor, elija una de las siguientes aplicaciones.
+                Para información meteorológica de aeropuertos, pulse 1, o diga la
+                palabra meteo. Para información referente a pistas de aeropuerto
+                pulse 2 o diga la palabra info.
+            </prompt>
+            <option value="meteo" dtmf="1">
+                meteo
+            </option>
+            <option value="info" dtmf="2">
+                info
+            </option>
+            <filled>
+                <if cond="option=='meteo'">
+                <assign name="application.applname" expr="'meteo'"/>
+                <else/>
+                <assign name="application.applname" expr="'info'"/>
+                </if>
+                <log>
+                ES applname initVoiceService =<value expr="application.applname"/>
+                </log>
+            </filled>
+        </field>
+    </form>
+    <form id="get_option_en">
+        <field name="option">
+            <nomatch>
+                <prompt xml:lang="en">
+                Sorry, I didn't understand you. Please, try again.
+                </prompt>
+                <reprompt/>
+            </nomatch>
+            <prompt xml:lang="en">
+                Please, choose one of the next applications. For meteorological
+                airport information, press 1, or say the word meteo. For
+                information about airport runways, press 2 or say the word info.
+            </prompt>
+            <option value="meteo" dtmf="1">
+                meteo
+            </option>
+            <option value="info" dtmf="2">
+                info
+            </option>
+            <filled>
+                <if cond="option=='meteo'">
+                    <assign name="applname" expr="'meteo'"/>
+                <else/>
+                    <assign name="applname" expr="'info'"/>
+                </if>
+                <log>
+                    EN appl initVoiceService =<value expr="applname"/>
+                </log>
+            </filled>
+        </field>
+    </form>
+</vxml>

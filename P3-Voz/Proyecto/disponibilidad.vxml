@@ -5,17 +5,29 @@
 	<link event="exit">
 		<grammar src="gramaticaSalida.jsgf"/>
 	</link>
-	
+
 	<form id="disponibilidad" scope="document">
 		<field name="diaVisita">
 			<prompt>Indique el dia que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
+			<nomatch count="1">
+				Di el dia de la visita, por ejemplo, el dos
+			</nomatch>
+			<nomatch count="2">
+				Di el dia de la visita, por ejemplo, el veinte
+			</nomatch>
 			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
 		</field>
 		<field name="mesVisita">
 			<prompt>Indique el mes que quiere hacer la visita</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
+			<nomatch count="1">
+				Di el mes de la visita, por ejemplo, mayo
+			</nomatch>
+			<nomatch count="2">
+				Di el mes de la visita, por ejemplo, junio
+			</nomatch>
 			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>

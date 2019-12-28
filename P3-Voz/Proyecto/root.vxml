@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <property name="grammarfetchint" value="prefetch"/>
+    <var name="applname"/>
+</vxml>
