@@ -1,4 +1,11 @@
 <vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+
 	<form id="ofertas">
         <field name="option">
             <prompt>
@@ -8,6 +15,8 @@
 				Si usted es familia numerosa, minusvalido, menor de 25 anios o mayor de 65 diga o pulse 3.
 				Si quiere las ofertas del mes diga o pulse 4.
             </prompt>
+			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
             <option value="1" dtmf="1">1</option>
             <option value="2" dtmf="2">2</option>
 			<option value="3" dtmf="3">3</option>
@@ -38,4 +47,20 @@
             </filled>
         </field>
     </form>
+
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#ofertas"/>
+				</if>
+			</filled>
+		</field>
+	</form>
 </vxml>
