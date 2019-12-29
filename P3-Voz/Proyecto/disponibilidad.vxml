@@ -35,6 +35,8 @@
 			<prompt>Existen entradas disponibles para el dia <value expr="diaVisita"/>
 				de <value expr="mesVisita"/>.
 			</prompt>
+			<!-- Volvemos al main para que el usuario siga consultando -->
+			<goto next="./main.vxml"/>
 		</filled>
 	</form>
 

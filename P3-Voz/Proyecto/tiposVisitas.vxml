@@ -9,73 +9,76 @@
 	<form id="tiposVisitas">
         <field name="option">
             <prompt>
-				Los tipos de visitas son:
-				Si quiere informacion sobre Visita Diurna General diga el nombre de la visita o pulse 1.
-		 		Si quiere informacion sobre Visita Diurna a Jardines diga el nombre de la visita o pulse 2.
-		 		Si quiere informacion sobre Visita Nocturna a Palacios Nazaries diga el nombre de la visita o pulse 3.
-		 		Si quiere informacion sobre Visita Nocturna a Jardines diga el nombre de la visita o pulse 4.
-		 		Si quiere informacion sobre Fundacion Rodriguez Acosta y Conjunto Monumental diga el nombre de la visita o pulse 5.
-         		Si quiere informacion sobre Visita Alhambra Experiencias diga el nombre de la visita o pulse 6.
-         		Si quiere informacion sobre Dobla de Oro General diga el nombre de la visita o pulse 7.
-         		Si quiere informacion sobre Dobla de Oro Nocturna diga el nombre de la visita o pulse 8.
-         		Si quiere informacion sobre Visita Monumentos Andalusies diga el nombre de la visita o pulse 9.
+				Si quiere informacion sobre Visita Diurna General diga o pulse 1.
+		 		Si quiere informacion sobre Visita Diurna a Jardines diga o pulse 2.
+		 		Si quiere informacion sobre Visita Nocturna a Palacios Nazaries diga o pulse 3.
+		 		Si quiere informacion sobre Visita Nocturna a Jardines diga o pulse 4.
+		 		Si quiere informacion sobre Fundacion Rodriguez Acosta y Conjunto Monumental diga o pulse 5.
+         		Si quiere informacion sobre Visita Alhambra Experiencias diga o pulse 6.
+         		Si quiere informacion sobre Dobla de Oro General diga o pulse 7.
+         		Si quiere informacion sobre Dobla de Oro Nocturna diga o pulse 8.
+         		Si quiere informacion sobre Visita Monumentos Andalusies diga o pulse 9.
             </prompt>
 			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
-            <option value="Visita Diurna General" dtmf="1">1</option>
-            <option value="Visita Diurna a Jardines" dtmf="2">2</option>
-			<option value="Visita Nocturna a Palacios" dtmf="3">3</option>
-			<option value="Visita Nocturna a Jardines" dtmf="4">4</option>
-			<option value="Fundacion Rodriguez Acosta y Conjunto Monumental" dtmf="5">5</option>
-            <option value="Visita Alhambra Experiencias" dtmf="6">6</option>
-			<option value="Dobla de Oro General" dtmf="7">7</option>
-			<option value="Dobla de Oro Nocturna" dtmf="8">8</option>
-			<option value="Visita Monumentos Andalusies" dtmf="9">9</option>
+            <option value="1" dtmf="1">1</option>
+            <option value="2" dtmf="2">2</option>
+			<option value="3" dtmf="3">3</option>
+			<option value="4" dtmf="4">4</option>
+			<option value="5" dtmf="5">5</option>
+            <option value="6" dtmf="6">6</option>
+			<option value="7" dtmf="7">7</option>
+			<option value="8" dtmf="8">8</option>
+			<option value="9" dtmf="9">9</option>
             <filled>
                 <if cond="option=='1'"><!-- Visita Diurna General -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar: Todo el año
+						Esta visita incluye: Alcazaba, Palacios Nazaries, Generalife, Palacio de Carlos Quinto, Baño de la Mezquita.
+						Esta visita se puede realizar: todo el anio.
 		            </prompt>
 				<elseif cond="option=='2'"/><!-- Visita Diurna a Jardines -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Paseo de los Cipreses, Secano, jardines de San Francisco, el jardin de los Adarves en la Alcazaba,
+						Partal, Palacio del Generalife, Palacio de Carlos Quinto y el banio de la Mezquita.
+						Esta visita se puede realizar: todo el anio.
 		            </prompt>
 				<elseif cond="option=='3'"/><!-- Visita Nocturna a Palacios -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Pabellon de Acceso, Palacio de Carlos Quinto, Palacios Nazaries y Puerta de la Justicia.
+						Esta visita se puede realizar: todo el anio, a las 20 horas en otonio y invierno y a las 22 horas en primavera y verano.
 		            </prompt>
 				<elseif cond="option=='4'"/><!-- Visita Nocturna a Jardines -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Pabellon de Acceso, Paseo de los Nogales del Generalife,
+						Jardines Nuevos o Jardines Bajos del Generalife y Palacio del Generalife.
+						Esta visita se puede realizar: de abril hasta el 15 de noviembre, a las 20 horas en otonio y a las 22 horas en primavera y verano.
 		            </prompt>
 				<elseif cond="option=='5'"/><!-- Fundacion Rodriguez Acosta y Conjunto Monumental -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Alcazaba, Palacios Nazaries, Generalife y la Fundacion, que consiste en un paseo por los 5 niveles del edificio y sus jardines.
+						Esta visita se puede realizar: todo el anio.
 					</prompt>
 				<elseif cond="option=='6'"/><!-- Visita Alhambra Experiencias -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Palacios Nazaries iluminados, Visita diurna a Alcazaba, Jardines y Palacio del Generalife.
+						Esta visita se puede realizar: para cada experiencia sigue el horario de esa visita explicado en los otros tipos de visitas.
 				    </prompt>
 				<elseif cond="option=='7'"/><!-- Dobla de Oro General -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Visita diurna general a la Alhambra, Corral del Carbon, Baniuelo, Palacio de Dar alHorra,
+						Casa Morisca, Casa del Chapiz y Casa de Zafra.
+						Esta visita se puede realizar: todo el anio.
 			        </prompt>
 				<elseif cond="option=='8'"/><!-- Dobla de Oro Nocturna -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Baniuelo, Corral del Carbon, Casa Morisca, Palacio de Dar alHorra, Casa del Chapiz,
+						Casa de Zafra y Visita Nocturna a los Palacios Nazaries de la Alhambra
+						Esta visita se puede realizar: todo el anio.
 		            </prompt>
 				<elseif cond="option=='9'"/><!-- Visita Monumentos Andalusies -->
 					<prompt>
-						Esta visita incluye:
-						Esta visita se puede realizar:
+						Esta visita incluye: Palacio de Dar alHorra, Corral del Carbon, Baniuelo, Casa Morisca.
+						Esta visita se puede realizar: todo el anio.
 		            </prompt>
 				<!--Aquí nunca debe entrar-->
                 <else/>
@@ -83,6 +86,8 @@
 						Lo siento no ha seleccionado ninguna opcion correcta.
 					</prompt>
                 </if>
+				<!-- Volvemos al main para que el usuario siga consultando -->
+				<goto next="./main.vxml"/>
             </filled>
         </field>
     </form>

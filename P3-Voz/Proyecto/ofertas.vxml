@@ -44,6 +44,8 @@
 						Lo siento no ha seleccionado ninguna opcion correcta.
 					</prompt>
                 </if>
+				<!-- Volvemos al main para que el usuario siga consultando -->
+				<goto next="./main.vxml"/>
             </filled>
         </field>
     </form>
