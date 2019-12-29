@@ -1,23 +1,96 @@
 <vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+
 	<form id="entradas">
 		<field name="tipoVisita">
 			<prompt>Cual es el tipo de visita que quieres realizar?</prompt>
 			<grammar src="gramaticaTipoVisita.jsgf"/>
+			<nomatch count="1">
+				Di el tipo de la visita, por ejemplo, Visita Diurna General.
+			</nomatch>
+			<nomatch count="2">
+				Di el tipo de la visita, por ejemplo, Visita Nocturna a Jardines.
+			</nomatch>
+			<help> Indique el tipo de la visita, por ejemplo, Visita Diurna a Jardines.</help>
+			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
-		<!--<field name="nombreApellidos">
+		<field name="nombreApellidos">
 			<prompt>Diga su nombre y apellidos por favor.</prompt>
 			<grammar src="gramaticaNombreApellidos.jsgf"/>
-		</field>-->
-		<!-- Dia de la visita -->
-		<!-- Mes de la visita -->
-		<!-- Numero de tlf -->
+			<nomatch count="1">
+				Diga su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.
+			</nomatch>
+			<nomatch count="2">
+				Diga su nombre y apellidos, por ejemplo, Carlos Sanchez Munioz.
+			</nomatch>
+			<help> Indique su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.</help>
+			<catch event="exit"><goto next="#salida"/></catch>
+		</field>
+		<field name="diaVisita">
+			<prompt>Indique el dia que quiere hacer la visita</prompt>
+			<grammar src="gramaticaDia.jsgf"/>
+			<nomatch count="1">
+				Di el dia de la visita, por ejemplo, el dos.
+			</nomatch>
+			<nomatch count="2">
+				Di el dia de la visita, por ejemplo, el veinte.
+			</nomatch>
+			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro.</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
+		</field>
+		<field name="mesVisita">
+			<prompt>Indique el mes que quiere hacer la visita.</prompt>
+			<grammar src="gramaticaMes.jsgf"/>
+			<nomatch count="1">
+				Di el mes de la visita, por ejemplo, mayo.
+			</nomatch>
+			<nomatch count="2">
+				Di el mes de la visita, por ejemplo, junio.
+			</nomatch>
+			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero.</help>
+			<catch event="exit"><goto next="#salida"/></catch>
+		</field>
+		<field name="numTelefono" type="phone">
+			<prompt>Cual es su numero de telefono?</prompt>
+			<nomatch count="1">
+				No he entendido bien el numero, repitalo por favor.
+			</nomatch>
+			<nomatch count="2">
+				No he conseguido entenderle, diga con claridad el telefono, numero a numero.
+			</nomatch>
+			<help> Indique un telefono de contacto.</help>
+			<catch event="exit"><goto next="#salida"/></catch>
+		</field>
 		<!-- Numero cuenta bancaria -->
 		<filled mode="all">
 			<prompt>Ha comprado usted su entrada.
 				     Tipo de visita: <value expr="tipoVisita"/>.
-					 <!--Nombre: <value expr="nombreApellidos"/>.-->
+					 Nombre: <value expr="nombreApellidos"/>.
+					 Fecha: dia <value expr="diaVisita"/> y <value expr="mesVisita"/>.
+					 Telefono de contacto: <value expr="numTelefono" class="phone"/>.
 					Gracias y espero que vuelva pronto!
 			</prompt>
 		</filled>
+	</form>
+
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#entradas"/>
+				</if>
+			</filled>
+		</field>
 	</form>
 </vxml>

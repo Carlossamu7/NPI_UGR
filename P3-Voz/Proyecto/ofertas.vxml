@@ -22,19 +22,19 @@
 			<option value="3" dtmf="3">3</option>
 			<option value="4" dtmf="4">4</option>
             <filled>
-                <if cond="option=='1'">
+                <if cond="option=='1'"><!-- Ninguna condicion especial -->
 					<prompt>
 						El precio general de la visita es de 14,85 euros.
 		            </prompt>
-				<elseif cond="option=='2'"/>
+				<elseif cond="option=='2'"/><!-- Granadino, menor de 12 anios o profesor -->
 					<prompt>
 						El precio para granadinos, menores de 12 anios acompaniados y profesores es gratuito.
 		            </prompt>
-				<elseif cond="option=='3'"/>
+				<elseif cond="option=='3'"/><!-- Familia numerosa, minusvalido, menor de 25 anios o mayor de 65 -->
 					<prompt>
 						El precio para familias numerosas, minusvalidos, jovenes menores de 25 y personas mayores de 65 anios es de 9,54 euros.
 		            </prompt>
-				<elseif cond="option=='4'"/>
+				<elseif cond="option=='4'"/><!-- Ofertas del mes -->
 					<prompt>
 						La oferta de este mes es para las visitas de los lunes las cuales tienen un descuento del 30 por ciento.
 		            </prompt>

@@ -1,7 +1,0 @@
-<vxml version="2.1" xml:lang="es-ES">
-	<form id="precios">
-		<block>
-			<prompt>Informacion sobre los precios.</prompt>
-		</block>
-	</form>
-</vxml>

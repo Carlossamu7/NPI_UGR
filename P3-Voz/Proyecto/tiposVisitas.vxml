@@ -1,0 +1,105 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+
+	<form id="tiposVisitas">
+        <field name="option">
+            <prompt>
+				Los tipos de visitas son:
+				Si quiere informacion sobre Visita Diurna General diga el nombre de la visita o pulse 1.
+		 		Si quiere informacion sobre Visita Diurna a Jardines diga el nombre de la visita o pulse 2.
+		 		Si quiere informacion sobre Visita Nocturna a Palacios Nazaries diga el nombre de la visita o pulse 3.
+		 		Si quiere informacion sobre Visita Nocturna a Jardines diga el nombre de la visita o pulse 4.
+		 		Si quiere informacion sobre Fundacion Rodriguez Acosta y Conjunto Monumental diga el nombre de la visita o pulse 5.
+         		Si quiere informacion sobre Visita Alhambra Experiencias diga el nombre de la visita o pulse 6.
+         		Si quiere informacion sobre Dobla de Oro General diga el nombre de la visita o pulse 7.
+         		Si quiere informacion sobre Dobla de Oro Nocturna diga el nombre de la visita o pulse 8.
+         		Si quiere informacion sobre Visita Monumentos Andalusies diga el nombre de la visita o pulse 9.
+            </prompt>
+			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
+            <option value="Visita Diurna General" dtmf="1">1</option>
+            <option value="Visita Diurna a Jardines" dtmf="2">2</option>
+			<option value="Visita Nocturna a Palacios" dtmf="3">3</option>
+			<option value="Visita Nocturna a Jardines" dtmf="4">4</option>
+			<option value="Fundacion Rodriguez Acosta y Conjunto Monumental" dtmf="5">5</option>
+            <option value="Visita Alhambra Experiencias" dtmf="6">6</option>
+			<option value="Dobla de Oro General" dtmf="7">7</option>
+			<option value="Dobla de Oro Nocturna" dtmf="8">8</option>
+			<option value="Visita Monumentos Andalusies" dtmf="9">9</option>
+            <filled>
+                <if cond="option=='1'"><!-- Visita Diurna General -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar: Todo el año
+		            </prompt>
+				<elseif cond="option=='2'"/><!-- Visita Diurna a Jardines -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+		            </prompt>
+				<elseif cond="option=='3'"/><!-- Visita Nocturna a Palacios -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+		            </prompt>
+				<elseif cond="option=='4'"/><!-- Visita Nocturna a Jardines -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+		            </prompt>
+				<elseif cond="option=='5'"/><!-- Fundacion Rodriguez Acosta y Conjunto Monumental -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+					</prompt>
+				<elseif cond="option=='6'"/><!-- Visita Alhambra Experiencias -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+				    </prompt>
+				<elseif cond="option=='7'"/><!-- Dobla de Oro General -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+			        </prompt>
+				<elseif cond="option=='8'"/><!-- Dobla de Oro Nocturna -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+		            </prompt>
+				<elseif cond="option=='9'"/><!-- Visita Monumentos Andalusies -->
+					<prompt>
+						Esta visita incluye:
+						Esta visita se puede realizar:
+		            </prompt>
+				<!--Aquí nunca debe entrar-->
+                <else/>
+					<prompt>
+						Lo siento no ha seleccionado ninguna opcion correcta.
+					</prompt>
+                </if>
+            </filled>
+        </field>
+    </form>
+
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#tiposVisitas"/>
+				</if>
+			</filled>
+		</field>
+	</form>
+</vxml>
