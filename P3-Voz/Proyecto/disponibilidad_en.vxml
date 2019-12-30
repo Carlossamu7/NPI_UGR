@@ -1,0 +1,64 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+
+	<form id="disponibilidad" scope="document">
+		<!-- Dia de la visita -->
+		<field name="diaVisita">
+			<prompt>Indique el dia que quiere hacer la visita.</prompt>
+			<grammar src="gramaticaDia.jsgf"/>
+			<nomatch count="1">
+				Di el dia de la visita, por ejemplo, el dos.
+			</nomatch>
+			<nomatch count="2">
+				Di el dia de la visita, por ejemplo, el veinte.
+			</nomatch>
+			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro.</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
+		</field>
+
+		<!-- Mes de la visita -->
+		<field name="mesVisita">
+			<prompt>Indique el mes que quiere hacer la visita.</prompt>
+			<grammar src="gramaticaMes.jsgf"/>
+			<nomatch count="1">
+				Di el mes de la visita, por ejemplo, mayo.
+			</nomatch>
+			<nomatch count="2">
+				Di el mes de la visita, por ejemplo, junio.
+			</nomatch>
+			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero.</help>
+			<catch event="exit"><goto next="#salida"/></catch>
+		</field>
+
+		<!-- Informamos al usuario -->
+		<filled mode="all">
+			<prompt>Existen entradas disponibles para el dia <value expr="diaVisita"/>
+				de <value expr="mesVisita"/>.
+			</prompt>
+			<!-- Volvemos al main para que el usuario siga consultando -->
+			<goto next="./main.vxml"/>
+		</filled>
+	</form>
+
+	<!-- Salida de la app -->
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#disponibilidad"/>
+				</if>
+			</filled>
+		</field>
+	</form>
+</vxml>

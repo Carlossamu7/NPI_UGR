@@ -1,0 +1,69 @@
+<vxml version="2.1" xml:lang="es-ES">
+	<link event="help">
+		<grammar src="gramaticaAyuda.jsgf"/>
+	</link>
+	<link event="exit">
+		<grammar src="gramaticaSalida.jsgf"/>
+	</link>
+
+	<form id="ofertas">
+        <field name="option">
+            <prompt>
+				La informacion para las ofertas es la siguiente:
+				Si usted no posee ninguna condicion especial diga o pulse 1.
+				Si usted es granadino, menor de 12 anios o profesor diga o pulse 2.
+				Si usted es familia numerosa, minusvalido, menor de 25 anios o mayor de 65 diga o pulse 3.
+				Si quiere las ofertas del mes diga o pulse 4.
+            </prompt>
+			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
+			<catch event="exit"> <goto next="#salida"/></catch>
+            <option value="1" dtmf="1">1</option>
+            <option value="2" dtmf="2">2</option>
+			<option value="3" dtmf="3">3</option>
+			<option value="4" dtmf="4">4</option>
+            <filled>
+                <if cond="option=='1'"><!-- Ninguna condicion especial -->
+					<prompt>
+						El precio general de la visita es de 14,85 euros.
+		            </prompt>
+				<elseif cond="option=='2'"/><!-- Granadino, menor de 12 anios o profesor -->
+					<prompt>
+						El precio para granadinos, menores de 12 anios acompaniados y profesores es gratuito.
+		            </prompt>
+				<elseif cond="option=='3'"/><!-- Familia numerosa, minusvalido, menor de 25 anios o mayor de 65 -->
+					<prompt>
+						El precio para familias numerosas, minusvalidos, jovenes menores de 25 y personas mayores de 65 anios es de 9,54 euros.
+		            </prompt>
+				<elseif cond="option=='4'"/><!-- Ofertas del mes -->
+					<prompt>
+						La oferta de este mes es para las visitas de los lunes las cuales tienen un descuento del 30 por ciento.
+		            </prompt>
+				<!--Aquí nunca debe entrar-->
+                <else/>
+					<prompt>
+						Lo siento no ha seleccionado ninguna opcion correcta.
+					</prompt>
+                </if>
+				<!-- Volvemos al main para que el usuario siga consultando -->
+				<goto next="./main.vxml"/>
+            </filled>
+        </field>
+    </form>
+
+	<!-- Salida de la app -->
+	<form id="salida" scope="document">
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo, adios.
+					<exit/>
+				<else/>
+					De acuerdo, continuemos por donde nos quedamos.
+					<clear namelist="confirmar_salida"/>
+					<goto next="#ofertas"/>
+				</if>
+			</filled>
+		</field>
+	</form>
+</vxml>

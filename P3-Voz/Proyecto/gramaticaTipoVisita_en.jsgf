@@ -1,0 +1,20 @@
+#JSGF V1.0;
+grammar gramaticaTipoVisita;
+public <gramaticaTipoVisita> =	Visita Diurna General |
+						 		Visita Diurna a Jardines |
+						 		Visita Nocturna a Palacios Nazaries |
+						 		Visita Nocturna a Jardines |
+						 		Fundacion Rodriguez Acosta y Conjunto Monumental |
+	                     		Visita Alhambra Experiencias |
+	                     		Dobla de Oro General |
+	                     		Dobla de Oro Nocturna |
+	                     		Visita Monumentos Andalusies |
+								Diurna General |
+						 		Diurna a Jardines |
+						 		Nocturna a Palacios Nazaries |
+						 		Nocturna a Jardines |
+						 		Fundacion Rodriguez Acosta y Conjunto Monumental |
+	                     		Alhambra Experiencias |
+	                     		Dobla de Oro General |
+	                     		Dobla de Oro Nocturna |
+	                     		Monumentos Andalusies ;

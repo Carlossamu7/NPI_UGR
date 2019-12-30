@@ -1,0 +1,12 @@
+#JSGF V1.0;
+grammar gramaticaDia;
+public <gramaticaDia> = [<deseo>] [<dia> {this.diaVisita=$dia}];
+
+<deseo> = me gustaria ir | me gustaria ir el | quiero ir el |
+ me gustaria ir el dia | quiero ir el dia;
+
+<dia> = uno | dos | tres | cuatro | cinco | seis | siete | ocho |
+ nueve | diez | once | doce | trece | catorce | quince | dieciseis | diecisiete |
+ dieciocho | diecinueve | veinte | veintiuno | veintidos | veintitres | veinticuatro |
+ veinticinco | veintiseis | veintisiete | veintiocho | veintinueve | treinta |
+ treinta y uno;
