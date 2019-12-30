@@ -1,12 +1,12 @@
 #JSGF V1.0;
-grammar gramaticaDia;
-public <gramaticaDia> = [<deseo>] [<dia> {this.diaVisita=$dia}];
+grammar gramaticaDia_en;
+public <gramaticaDia_en> = [<wish>] [<day> {this.diaVisita=$day}];
 
-<deseo> = me gustaria ir | me gustaria ir el | quiero ir el |
- me gustaria ir el dia | quiero ir el dia;
+<wish> = I would like to go | I would like to go on | I want to go on |
+ I would like to go the day | I want to go the day;
 
-<dia> = uno | dos | tres | cuatro | cinco | seis | siete | ocho |
- nueve | diez | once | doce | trece | catorce | quince | dieciseis | diecisiete |
- dieciocho | diecinueve | veinte | veintiuno | veintidos | veintitres | veinticuatro |
- veinticinco | veintiseis | veintisiete | veintiocho | veintinueve | treinta |
- treinta y uno;
+<day> = one | two | three | four | five | six | seven | eight |
+ nine | ten | eleven | twelve | thirteen | fourteen | fifteen | sixteen | seventeen |
+ eighteen | nineteen | twenty | twenty-one | twenty-two | twenty-three | twenty-four |
+ twenty-five | twenty-six | twenty-seven | twenty-eight | twenty-nine | thirty |
+ thirty-one;

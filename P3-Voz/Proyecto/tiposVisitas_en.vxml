@@ -1,25 +1,25 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<link event="help">
-		<grammar src="gramaticaAyuda.jsgf"/>
+		<grammar src="gramaticaAyuda_en.jsgf"/>
 	</link>
 	<link event="exit">
-		<grammar src="gramaticaSalida.jsgf"/>
+		<grammar src="gramaticaSalida_en.jsgf"/>
 	</link>
 
 	<form id="tiposVisitas">
         <field name="option">
             <prompt>
-				Si quiere informacion sobre Visita Diurna General diga o pulse 1.
-		 		Si quiere informacion sobre Visita Diurna a Jardines diga o pulse 2.
-		 		Si quiere informacion sobre Visita Nocturna a Palacios Nazaries diga o pulse 3.
-		 		Si quiere informacion sobre Visita Nocturna a Jardines diga o pulse 4.
-		 		Si quiere informacion sobre Fundacion Rodriguez Acosta y Conjunto Monumental diga o pulse 5.
-         		Si quiere informacion sobre Visita Alhambra Experiencias diga o pulse 6.
-         		Si quiere informacion sobre Dobla de Oro General diga o pulse 7.
-         		Si quiere informacion sobre Dobla de Oro Nocturna diga o pulse 8.
-         		Si quiere informacion sobre Visita Monumentos Andalusies diga o pulse 9.
+				If you want information about General Day Visit, say or press 1.
+				If you want information about Daytime Visit to Gardens, say or press 2.
+				If you want information about Night Visit to Palacios Nazaries say or press 3.
+				If you want information about Night Visit to Gardens, say or press 4.
+				If you want information about Fundacion Rodriguez Acosta and Monumental Ensemble, say or press 5.
+				If you want information about Alhambra Experiences, say or press 6.
+				If you want information about the General Gold Double, say or press 7.
+				If you want information about the Night Gold Double, say or press 8.
+				If you want information about Visit Monuments Andalusies say or press 9.
             </prompt>
-			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
+			<catch event="help"> Say an option, for example, one.</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
             <option value="1" dtmf="1">1</option>
             <option value="2" dtmf="2">2</option>
@@ -31,76 +31,75 @@
 			<option value="8" dtmf="8">8</option>
 			<option value="9" dtmf="9">9</option>
             <filled>
-                <if cond="option=='1'"><!-- Visita Diurna General -->
+                <if cond="option=='1'"><!-- General Day Visit -->
 					<prompt>
-						Esta visita incluye: Alcazaba, Palacios Nazaries, Generalife, Palacio de Carlos Quinto, Baño de la Mezquita.
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: Alcazaba, Nasrid Palaces, Generalife, Palace of Carlos Quinto, Bath of the Mosque.
+						This visit can be done: all year.
 		            </prompt>
-				<elseif cond="option=='2'"/><!-- Visita Diurna a Jardines -->
+				<elseif cond="option=='2'"/><!-- Daytime Visit to Gardens -->
 					<prompt>
-						Esta visita incluye: Paseo de los Cipreses, Secano, jardines de San Francisco, el jardin de los Adarves en la Alcazaba,
-						Partal, Palacio del Generalife, Palacio de Carlos Quinto y el banio de la Mezquita.
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: Paseo de los Cipreses, Secano, San Francisco gardens, the Adarves garden in the Alcazaba,
+Partal, Palace of the Generalife, Palace of Carlos Quinto and the Banque de la Mezquita.
+						This visit can be done: all year.
 		            </prompt>
-				<elseif cond="option=='3'"/><!-- Visita Nocturna a Palacios -->
+				<elseif cond="option=='3'"/><!-- Night Visit to Palacios Nazaries -->
 					<prompt>
-						Esta visita incluye: Pabellon de Acceso, Palacio de Carlos Quinto, Palacios Nazaries y Puerta de la Justicia.
-						Esta visita se puede realizar: todo el anio, a las 20 horas en otonio y invierno y a las 22 horas en primavera y verano.
+						This visit includes: Access Pavilion, Carlos Quinto Palace, Nazaries Palaces and Justice Gate.
+						This visit can be done: throughout the year, at 8:00 pm in autumn and winter and at 10:00 pm in spring and summer.
 		            </prompt>
-				<elseif cond="option=='4'"/><!-- Visita Nocturna a Jardines -->
+				<elseif cond="option=='4'"/><!-- Night Visit to Gardens -->
 					<prompt>
-						Esta visita incluye: Pabellon de Acceso, Paseo de los Nogales del Generalife,
-						Jardines Nuevos o Jardines Bajos del Generalife y Palacio del Generalife.
-						Esta visita se puede realizar: de abril hasta el 15 de noviembre, a las 20 horas en otonio y a las 22 horas en primavera y verano.
+						This visit includes: Access Pavilion, Paseo de los Nogales del Generalife, New Gardens or Low Gardens of the Generalife and Palace of the Generalife.
+						This visit can be made: from April to November 15, at 8:00 pm in Otonio and at 10:00 pm in spring and summer.
 		            </prompt>
-				<elseif cond="option=='5'"/><!-- Fundacion Rodriguez Acosta y Conjunto Monumental -->
+				<elseif cond="option=='5'"/><!-- Fundacion Rodriguez Acosta and Monumental Ensemble -->
 					<prompt>
-						Esta visita incluye: Alcazaba, Palacios Nazaries, Generalife y la Fundacion, que consiste en un paseo por los 5 niveles del edificio y sus jardines.
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: Alcazaba, Palacios Nazaries, Generalife and the Foundation, which consists of a walk through the 5 levels of the building and its gardens.
+						This visit can be done: all year.
 					</prompt>
-				<elseif cond="option=='6'"/><!-- Visita Alhambra Experiencias -->
+				<elseif cond="option=='6'"/><!-- Alhambra Experiences -->
 					<prompt>
-						Esta visita incluye: Palacios Nazaries iluminados, Visita diurna a Alcazaba, Jardines y Palacio del Generalife.
-						Esta visita se puede realizar: para cada experiencia sigue el horario de esa visita explicado en los otros tipos de visitas.
+						This visit includes: Illuminated Nazarian Palaces, Daytime visit to Alcazaba, Gardens and Generalife Palace.
+						This visit can be made: for each experience follow the schedule of that visit explained in the other types of visits.
 				    </prompt>
-				<elseif cond="option=='7'"/><!-- Dobla de Oro General -->
+				<elseif cond="option=='7'"/><!-- the General Gold Double -->
 					<prompt>
-						Esta visita incluye: Visita diurna general a la Alhambra, Corral del Carbon, Baniuelo, Palacio de Dar alHorra,
-						Casa Morisca, Casa del Chapiz y Casa de Zafra.
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: General daytime visit to the Alhambra, Corral del Carbon, Baniuelo, Dar alHorra Palace,
+Casa Morisca, Casa del Chapiz and Casa de Zafra.
+						This visit can be done: all year.
 			        </prompt>
-				<elseif cond="option=='8'"/><!-- Dobla de Oro Nocturna -->
+				<elseif cond="option=='8'"/><!-- the Night Gold Double -->
 					<prompt>
-						Esta visita incluye: Baniuelo, Corral del Carbon, Casa Morisca, Palacio de Dar alHorra, Casa del Chapiz,
-						Casa de Zafra y Visita Nocturna a los Palacios Nazaries de la Alhambra
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: Baniuelo, Corral del Carbon, Casa Morisca, Dar alHorra Palace, Casa del Chapiz,
+House of Zafra and Night Visit to the Nasrid Palaces of the Alhambra
+						This visit can be done: all year.
 		            </prompt>
-				<elseif cond="option=='9'"/><!-- Visita Monumentos Andalusies -->
+				<elseif cond="option=='9'"/><!-- Visit Monuments Andalusies -->
 					<prompt>
-						Esta visita incluye: Palacio de Dar alHorra, Corral del Carbon, Baniuelo, Casa Morisca.
-						Esta visita se puede realizar: todo el anio.
+						This visit includes: Dar alHorra Palace, Corral del Carbon, Baniuelo, Casa Morisca.
+						This visit can be done: all year.
 		            </prompt>
-				<!--Aquí nunca debe entrar-->
+				<!--Here you should never enter-->
                 <else/>
 					<prompt>
-						Lo siento no ha seleccionado ninguna opcion correcta.
+						Sorry you have not selected any correct option.
 					</prompt>
                 </if>
-				<!-- Volvemos al main para que el usuario siga consultando -->
-				<goto next="./main.vxml"/>
+				<!-- We return to the main for the user to continue consulting -->
+				<goto next="./main_en.vxml"/>
             </filled>
         </field>
     </form>
 
 	<form id="salida" scope="document">
 		<field name="confirmar_salida" type="boolean">
-			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<prompt>Seguro que deseas salir de la aplicacionAre you sure you want to exit the application?</prompt>
 			<filled>
 				<if cond="confirmar_salida">
-					De acuerdo, adios.
+					Okey, bye.
 					<exit/>
 				<else/>
-					De acuerdo, continuemos por donde nos quedamos.
+					Okay, let's continue where we stay.
 					<clear namelist="confirmar_salida"/>
 					<goto next="#tiposVisitas"/>
 				</if>

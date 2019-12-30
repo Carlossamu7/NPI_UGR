@@ -1,107 +1,107 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<link event="help">
-		<grammar src="gramaticaAyuda.jsgf"/>
+		<grammar src="gramaticaAyuda_en.jsgf"/>
 	</link>
 	<link event="exit">
-		<grammar src="gramaticaSalida.jsgf"/>
+		<grammar src="gramaticaSalida_en.jsgf"/>
 	</link>
 
 	<form id="entradas">
-		<!-- Tipo de visita -->
+		<!-- Type of visit -->
 		<field name="tipoVisita">
 			<prompt>
-				Cual es el tipo de visita que quieres realizar?
-				Le recuerdo que puede consultar los tipos de visita en informacion.
+				What is the type of visit you want to make?
+				I remind you that you can check the types of visits in information.
 			</prompt>
-			<grammar src="gramaticaTipoVisita.jsgf"/>
+			<grammar src="gramaticaTipoVisita_en.jsgf"/>
 			<nomatch count="1">
-				Di el tipo de la visita, por ejemplo, Visita Diurna General.
+				Say the type of visit, for example, General Day Visit.
 			</nomatch>
 			<nomatch count="2">
-				Di el tipo de la visita, por ejemplo, Visita Nocturna a Jardines.
+				Say the type of visit, for example, Night Visit to Gardens.
 			</nomatch>
-			<help> Indique el tipo de la visita, por ejemplo, Visita Diurna a Jardines.</help>
+			<help> Indicate the type of visit, for example, Daytime Visit to Gardens.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
 
-		<!-- Nombre y apellidos -->
+		<!-- Name and surname -->
 		<field name="nombreApellidos">
-			<prompt>Diga su nombre y apellidos por favor.</prompt>
+			<prompt>Say your first and last name please.</prompt>
 			<grammar src="gramaticaNombreApellidos.jsgf"/>
 			<nomatch count="1">
-				Diga su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.
+				Say your first and last name, for example, Ramon Lopez Cozar.
 			</nomatch>
 			<nomatch count="2">
-				Diga su nombre y apellidos, por ejemplo, Carlos Sanchez Munioz.
+				Say your first and last name, for example, Carlos Sanchez Munioz.
 			</nomatch>
-			<help> Indique su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.</help>
+			<help> Say your first and last name, for example, Ramon Lopez Cozar.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
 
-		<!-- Dia de la visita -->
+		<!-- Day of the visit -->
 		<field name="diaVisita">
-			<prompt>Indique el dia que quiere hacer la visita</prompt>
-			<grammar src="gramaticaDia.jsgf"/>
+			<prompt>Indicate the day you want to visit</prompt>
+			<grammar src="gramaticaDia_en.jsgf"/>
 			<nomatch count="1">
-				Di el dia de la visita, por ejemplo, el dos.
+				Say the day of the visit, for example, the two.
 			</nomatch>
 			<nomatch count="2">
-				Di el dia de la visita, por ejemplo, el veinte.
+				Say the day of the visit, for example, twenty.
 			</nomatch>
-			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro.</catch>
+			<catch event="help"> Indicate the day you want to visit, for example on four.</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
 		</field>
 
-		<!-- Mes de la visita -->
+		<!-- Month of the visit -->
 		<field name="mesVisita">
-			<prompt>Indique el mes que quiere hacer la visita.</prompt>
-			<grammar src="gramaticaMes.jsgf"/>
+			<prompt>Indicate the month you want to visit.</prompt>
+			<grammar src="gramaticaMes_en.jsgf"/>
 			<nomatch count="1">
-				Di el mes de la visita, por ejemplo, mayo.
+				Say the month of the visit, for example, May.
 			</nomatch>
 			<nomatch count="2">
-				Di el mes de la visita, por ejemplo, junio.
+				Say the month of the visit, for example, June.
 			</nomatch>
-			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero.</help>
+			<help> Indicate the month you want to visit, for example February.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
 
-		<!-- Numero de entradas -->
+		<!-- Number of entries -->
 		<field name="numEntradas">
-			<prompt>Indique la cantidad de entradas que desea.</prompt>
+			<prompt>Indicate the number of tickets you want.</prompt>
 			<grammar src="gramaticaNumEntradas.jsgf"/>
 			<nomatch count="1">
-				Diga un numero de entradas, por ejemplo, dos.
+				Say a number of entries, for example, two.
 			</nomatch>
 			<nomatch count="2">
-				Diga un numero de entradas, por ejemplo, cuatro.
+				Say a number of entries, for example, four..
 			</nomatch>
-			<help> Indique el numero de entradas que desea, por ejemplo tres.</help>
+			<help> Enter the number of tickets you want, for example three.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
 
-		<!-- Entrada sacada e informamos al usuario -->
+		<!-- Ticket taken out and we inform the user -->
 		<filled mode="all">
-			<prompt>Ha comprado usted su entrada.
-				     Tipo de visita: <value expr="tipoVisita"/>.
-					 Nombre: <value expr="nombreApellidos"/>.
-					 Fecha: dia <value expr="diaVisita"/> y <value expr="mesVisita"/>.
-					 Numero de entradas: <value expr="numEntradas"/>.
-					Muchas gracias y espero que vuelva pronto!
+			<prompt>You have bought your ticket.
+				     Type of visit: <value expr="tipoVisita"/>.
+					 Name: <value expr="nombreApellidos"/>.
+					 Date: day <value expr="diaVisita"/> of <value expr="mesVisita"/>.
+					 Number of tickets: <value expr="numEntradas"/>.
+					 Thank you very much and I hope you come back soon!
 			</prompt>
 		</filled>
 	</form>
 
-	<!-- Salida de la app -->
+	<!-- App Exit -->
 	<form id="salida" scope="document">
 		<field name="confirmar_salida" type="boolean">
-			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<prompt>Are you sure you want to exit the application?</prompt>
 			<filled>
 				<if cond="confirmar_salida">
-					De acuerdo, adios.
+					Okay, bye.
 					<exit/>
 				<else/>
-					De acuerdo, continuemos por donde nos quedamos.
+					Okay, let's continue where we stay.
 					<clear namelist="confirmar_salida"/>
 					<goto next="#entradas"/>
 				</if>

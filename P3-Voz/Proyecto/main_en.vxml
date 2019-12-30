@@ -1,8 +1,8 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<menu>
-		<prompt>Bienvenido a la app de la Alhambra, elige una opcion: </prompt>
+		<prompt>Welcome to the Alhambra app, choose an option: </prompt>
 			<enumerate/>
-			<choice next="./entradas.vxml"> Entradas </choice>
-			<choice next="./info.vxml"> Informacion </choice>
+			<choice next="./entradas_en.vxml"> Tickets </choice>
+			<choice next="./info_en.vxml"> Information </choice>
 	</menu>
 </vxml>

@@ -1,27 +1,27 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<form id="consignas">
 		<block>
 			<prompt>
-				<!-- Reproducimos audio -->
-				<audio src="consignas.wav">
-					<!-- Texto alternativo por si no se escucha el fichero consignas.wav-->
-					<emp>Informacion sobre las consignas. Hay problemas con el fichero de audio. </emp>
+				<!-- We play audio -->
+				<audio src="consignas_en.wav">
+					<!-- Alternative text in case the file consignas.wav is not heard-->
+					<emp>Information about the locker. There are problems with the audio file. </emp>
 				</audio>
 			</prompt>
 		</block>
 
-		<field name="seguir_consultando" type="boolean">
-			<prompt>Desea hacer mas consultas?</prompt>
+		<field name="keep_on_consulting" type="boolean">
+			<prompt>Do you want to ask more questions?</prompt>
 			<filled>
-				<!-- Vamos a main -->
-				<if cond="seguir_consultando">
-					De acuerdo.
-					<clear namelist="seguir_consultando"/>
-					<goto next="./main.vxml"/>
+				<!-- Go to main -->
+				<if cond="keep_on_consulting">
+					Okey.
+					<clear namelist="keep_on_consulting"/>
+					<goto next="./main_en.vxml"/>
 				
-				<!-- Fin -->
+				<!-- End -->
 				<else/>
-					Gracias y hasta pronto.
+					Thanks and see you soon.
 					<exit/>
 				</if>
 			</filled>

@@ -1,20 +1,17 @@
 #JSGF V1.0;
-grammar gramaticaTipoVisita;
-public <gramaticaTipoVisita> =	Visita Diurna General |
-						 		Visita Diurna a Jardines |
-						 		Visita Nocturna a Palacios Nazaries |
-						 		Visita Nocturna a Jardines |
-						 		Fundacion Rodriguez Acosta y Conjunto Monumental |
-	                     		Visita Alhambra Experiencias |
-	                     		Dobla de Oro General |
-	                     		Dobla de Oro Nocturna |
-	                     		Visita Monumentos Andalusies |
-								Diurna General |
-						 		Diurna a Jardines |
-						 		Nocturna a Palacios Nazaries |
-						 		Nocturna a Jardines |
-						 		Fundacion Rodriguez Acosta y Conjunto Monumental |
-	                     		Alhambra Experiencias |
-	                     		Dobla de Oro General |
-	                     		Dobla de Oro Nocturna |
-	                     		Monumentos Andalusies ;
+grammar gramaticaTipoVisita_en;
+public <gramaticaTipoVisita_en> =	General Day Visit |
+									Daytime Visit to Gardens |
+									Night Visit to Palacios Nazaries |
+									Night Visit to Gardens |
+									Fundacion Rodriguez Acosta and Monumental Ensemble |
+									Visit Alhambra Experiences |
+									General Gold Doubles |
+									Double Gold Night |
+									Visit Andalusies Monuments |
+									Daytime General |
+									Daytime to Gardens |
+									Night at Palacios Nazaries |
+									Night at Gardens |
+									Alhambra Experiences |
+									Andalusies monuments;

@@ -1,10 +1,10 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<menu>
-		<prompt>Sobre que desea información?. </prompt>
+		<prompt>What do you want information about?. </prompt>
 		<enumerate/>
-			<choice next="./disponibilidad.vxml"> Disponibilidad </choice>
-			<choice next="./tiposVisitas.vxml"> Tipos de visita </choice>
-			<choice next="./consignas.vxml"> Consignas </choice>
-			<choice next="./ofertas.vxml"> Ofertas </choice>
+			<choice next="./disponibilidad_en.vxml"> Availability </choice>
+			<choice next="./tiposVisitas_en.vxml"> Types of visit </choice>
+			<choice next="./consignas_en.vxml"> Lockers </choice>
+			<choice next="./ofertas_en.vxml"> Offers </choice>
 	</menu>
 </vxml>

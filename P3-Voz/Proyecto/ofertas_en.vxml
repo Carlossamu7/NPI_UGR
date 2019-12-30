@@ -1,65 +1,65 @@
-<vxml version="2.1" xml:lang="es-ES">
+<vxml version="2.1" xml:lang="en-US">
 	<link event="help">
-		<grammar src="gramaticaAyuda.jsgf"/>
+		<grammar src="gramaticaAyuda_en.jsgf"/>
 	</link>
 	<link event="exit">
-		<grammar src="gramaticaSalida.jsgf"/>
+		<grammar src="gramaticaSalida_en.jsgf"/>
 	</link>
 
 	<form id="ofertas">
         <field name="option">
             <prompt>
-				La informacion para las ofertas es la siguiente:
-				Si usted no posee ninguna condicion especial diga o pulse 1.
-				Si usted es granadino, menor de 12 anios o profesor diga o pulse 2.
-				Si usted es familia numerosa, minusvalido, menor de 25 anios o mayor de 65 diga o pulse 3.
-				Si quiere las ofertas del mes diga o pulse 4.
+				The information for the offers is as follows:
+				If you do not have any special conditions say or press 1.
+				If you are from Granada, under 12 or a teacher say or press 2.
+				If you are a large family, disabled, under 25 or over 65 say or press 3.
+				If you want the offers of the month say or press 4.
             </prompt>
-			<catch event="help"> Diga una opcion, por ejemplo, uno.</catch>
+			<catch event="help"> Say an option, for example, one.</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
             <option value="1" dtmf="1">1</option>
             <option value="2" dtmf="2">2</option>
 			<option value="3" dtmf="3">3</option>
 			<option value="4" dtmf="4">4</option>
             <filled>
-                <if cond="option=='1'"><!-- Ninguna condicion especial -->
+                <if cond="option=='1'"><!-- No special condition -->
 					<prompt>
-						El precio general de la visita es de 14,85 euros.
+						The general price of the visit is 14.85 euros.
 		            </prompt>
-				<elseif cond="option=='2'"/><!-- Granadino, menor de 12 anios o profesor -->
+				<elseif cond="option=='2'"/><!-- Grenadian, younger than 12 years or teacher -->
 					<prompt>
-						El precio para granadinos, menores de 12 anios acompaniados y profesores es gratuito.
+						The price for grenadian, children under 12 years accompanied and teachers is free.
 		            </prompt>
-				<elseif cond="option=='3'"/><!-- Familia numerosa, minusvalido, menor de 25 anios o mayor de 65 -->
+				<elseif cond="option=='3'"/><!-- Large family, disabled, under 25 or over 65 -->
 					<prompt>
-						El precio para familias numerosas, minusvalidos, jovenes menores de 25 y personas mayores de 65 anios es de 9,54 euros.
+						The price for large families, disabled, young people under 25 and people over 65 years is 9.54 euros.
 		            </prompt>
-				<elseif cond="option=='4'"/><!-- Ofertas del mes -->
+				<elseif cond="option=='4'"/><!-- Offers of the month -->
 					<prompt>
-						La oferta de este mes es para las visitas de los lunes las cuales tienen un descuento del 30 por ciento.
+						This month's offer is for Mondays visits which have a 30 percent discount.
 		            </prompt>
-				<!--Aquí nunca debe entrar-->
+				<!--Here you should never enter-->
                 <else/>
 					<prompt>
-						Lo siento no ha seleccionado ninguna opcion correcta.
+						Sorry you have not selected any correct option.
 					</prompt>
                 </if>
-				<!-- Volvemos al main para que el usuario siga consultando -->
-				<goto next="./main.vxml"/>
+				<!-- We return to the main for the user to continue consulting -->
+				<goto next="./main_en.vxml"/>
             </filled>
         </field>
     </form>
 
-	<!-- Salida de la app -->
+	<!-- App Exit -->
 	<form id="salida" scope="document">
 		<field name="confirmar_salida" type="boolean">
-			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
+			<prompt>Are you sure you want to exit the application?</prompt>
 			<filled>
 				<if cond="confirmar_salida">
-					De acuerdo, adios.
+					Okey, bye.
 					<exit/>
 				<else/>
-					De acuerdo, continuemos por donde nos quedamos.
+					Okay, let's continue where we stay.
 					<clear namelist="confirmar_salida"/>
 					<goto next="#ofertas"/>
 				</if>
