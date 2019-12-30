@@ -10,16 +10,19 @@
 			</prompt>
 		</block>
 
-		<field name="confirmar_salida" type="boolean">
+		<field name="seguir_consultando" type="boolean">
 			<prompt>Desea hacer mas consultas?</prompt>
 			<filled>
-				<if cond="confirmar_salida">
+				<!-- Vamos a main -->
+				<if cond="seguir_consultando">
 					De acuerdo.
-					<clear namelist="confirmar_salida"/>
+					<clear namelist="seguir_consultando"/>
 					<goto next="./main.vxml"/>
-					<exit/>
+				
+				<!-- Fin -->
 				<else/>
 					Gracias y hasta pronto.
+					<exit/>
 				</if>
 			</filled>
 		</field>
