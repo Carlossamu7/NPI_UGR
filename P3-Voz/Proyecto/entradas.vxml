@@ -9,7 +9,10 @@
 	<form id="entradas">
 		<!-- Tipo de visita -->
 		<field name="tipoVisita">
-			<prompt>Cual es el tipo de visita que quieres realizar?</prompt>
+			<prompt>
+				Cual es el tipo de visita que quieres realizar?
+				Le recuerdo que puede consultar los tipos de visita en informacion.
+			</prompt>
 			<grammar src="gramaticaTipoVisita.jsgf"/>
 			<nomatch count="1">
 				Di el tipo de la visita, por ejemplo, Visita Diurna General.
