@@ -50,6 +50,7 @@
         </field>
     </form>
 
+	<!-- Salida de la app -->
 	<form id="salida" scope="document">
 		<field name="confirmar_salida" type="boolean">
 			<prompt>Seguro que deseas salir de la aplicacion?</prompt>

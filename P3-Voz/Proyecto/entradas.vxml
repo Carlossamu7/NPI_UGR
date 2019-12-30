@@ -7,6 +7,7 @@
 	</link>
 
 	<form id="entradas">
+		<!-- Tipo de visita -->
 		<field name="tipoVisita">
 			<prompt>Cual es el tipo de visita que quieres realizar?</prompt>
 			<grammar src="gramaticaTipoVisita.jsgf"/>
@@ -19,6 +20,8 @@
 			<help> Indique el tipo de la visita, por ejemplo, Visita Diurna a Jardines.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
+
+		<!-- Nombre y apellidos -->
 		<field name="nombreApellidos">
 			<prompt>Diga su nombre y apellidos por favor.</prompt>
 			<grammar src="gramaticaNombreApellidos.jsgf"/>
@@ -31,6 +34,8 @@
 			<help> Indique su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
+
+		<!-- Dia de la visita -->
 		<field name="diaVisita">
 			<prompt>Indique el dia que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
@@ -43,6 +48,8 @@
 			<catch event="help"> Indique el dia que quiere hacer la visita, por ejemplo el cuatro.</catch>
 			<catch event="exit"> <goto next="#salida"/></catch>
 		</field>
+
+		<!-- Mes de la visita -->
 		<field name="mesVisita">
 			<prompt>Indique el mes que quiere hacer la visita.</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
@@ -55,29 +62,34 @@
 			<help> Indique el mes que quiere hacer la visita, por ejemplo febrero.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
-		<field name="numTelefono" type="phone">
-			<prompt>Cual es su numero de telefono?</prompt>
+
+		<!-- Numero de entradas -->
+		<field name="numEntradas">
+			<prompt>Indique la cantidad de entradas que desea.</prompt>
+			<grammar src="gramaticaNumEntradas.jsgf"/>
 			<nomatch count="1">
-				No he entendido bien el numero, repitalo por favor.
+				Diga un numero de entradas, por ejemplo, dos.
 			</nomatch>
 			<nomatch count="2">
-				No he conseguido entenderle, diga con claridad el telefono, numero a numero.
+				Diga un numero de entradas, por ejemplo, cuatro.
 			</nomatch>
-			<help> Indique un telefono de contacto.</help>
+			<help> Indique el numero de entradas que desea, por ejemplo tres.</help>
 			<catch event="exit"><goto next="#salida"/></catch>
 		</field>
-		<!-- Numero cuenta bancaria -->
+
+		<!-- Entrada sacada e informamos al usuario -->
 		<filled mode="all">
 			<prompt>Ha comprado usted su entrada.
 				     Tipo de visita: <value expr="tipoVisita"/>.
 					 Nombre: <value expr="nombreApellidos"/>.
 					 Fecha: dia <value expr="diaVisita"/> y <value expr="mesVisita"/>.
-					 Telefono de contacto: <value expr="numTelefono" class="phone"/>.
-					Gracias y espero que vuelva pronto!
+					 Numero de entradas: <value expr="numEntradas"/>.
+					Muchas gracias y espero que vuelva pronto!
 			</prompt>
 		</filled>
 	</form>
 
+	<!-- Salida de la app -->
 	<form id="salida" scope="document">
 		<field name="confirmar_salida" type="boolean">
 			<prompt>Seguro que deseas salir de la aplicacion?</prompt>
