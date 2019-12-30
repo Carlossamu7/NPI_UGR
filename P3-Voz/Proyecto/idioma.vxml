@@ -2,10 +2,10 @@
 <vxml version="2.1">
     <form id="init">
         <block>
-            <prompt xml:lang="es-es">
+            <prompt xml:lang="es-es" bargein="false">
                 Bienvenido al servicio de voz asistente para la visita de la Alhambra!
             </prompt>
-            <prompt xml:lang="en-us">
+            <prompt xml:lang="en-us" bargein="false">
                 Welcome to the voice service for the app of the Alhambra asistance!
             </prompt>
             <goto next="#getLanguage"/>
@@ -13,10 +13,10 @@
     </form>
     <form id="getLanguage">
         <field name="language">
-            <prompt xml:lang="es-es" timeout="15s">
+            <prompt xml:lang="es-es" timeout="15s" bargein="false">
                 Para idioma Español, diga o pulse 1.
             </prompt>
-            <prompt xml:lang="en-us" timeout="15s">
+            <prompt xml:lang="en-us" timeout="15s" bargein="false">
                 For English language, say or press 2.
             </prompt>
             <option value="1" dtmf="1">1</option>
@@ -25,7 +25,7 @@
                 <if cond="language=='1'">
                     <goto next="./main.vxml"/>
                 <elseif cond="language=='2'"/>
-                    <goto next="./entradas.vxml"/>
+                    <goto next="./main_en.vxml"/>
                 </if>
             </filled>
         </field>

@@ -10,7 +10,7 @@
 		<!-- Type of visit -->
 		<field name="tipoVisita">
 			<prompt>
-				What is the type of visit you want to make?
+				What is the <emp> type </emp> of visit you want to make?
 				I remind you that you can check the types of visits in information.
 			</prompt>
 			<grammar src="gramaticaTipoVisita_en.jsgf"/>
@@ -26,7 +26,7 @@
 
 		<!-- Name and surname -->
 		<field name="nombreApellidos">
-			<prompt>Say your first and last name please.</prompt>
+			<prompt>Say your <emp> first and last name </emp> please.</prompt>
 			<grammar src="gramaticaNombreApellidos.jsgf"/>
 			<nomatch count="1">
 				Say your first and last name, for example, Ramon Lopez Cozar.
@@ -40,7 +40,7 @@
 
 		<!-- Day of the visit -->
 		<field name="diaVisita">
-			<prompt>Indicate the day you want to visit</prompt>
+			<prompt>Indicate the <emp> day </emp> you want to visit</prompt>
 			<grammar src="gramaticaDia_en.jsgf"/>
 			<nomatch count="1">
 				Say the day of the visit, for example, the two.
@@ -54,7 +54,7 @@
 
 		<!-- Month of the visit -->
 		<field name="mesVisita">
-			<prompt>Indicate the month you want to visit.</prompt>
+			<prompt>Indicate the <emp> month </emp> you want to visit.</prompt>
 			<grammar src="gramaticaMes_en.jsgf"/>
 			<nomatch count="1">
 				Say the month of the visit, for example, May.
@@ -68,7 +68,7 @@
 
 		<!-- Number of entries -->
 		<field name="numEntradas">
-			<prompt>Indicate the number of tickets you want.</prompt>
+			<prompt>Indicate the <emp> number </emp> of tickets you want.</prompt>
 			<grammar src="gramaticaNumEntradas.jsgf"/>
 			<nomatch count="1">
 				Say a number of entries, for example, two.

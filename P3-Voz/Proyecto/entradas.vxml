@@ -10,7 +10,7 @@
 		<!-- Tipo de visita -->
 		<field name="tipoVisita">
 			<prompt>
-				Cual es el tipo de visita que quieres realizar?
+				Cual es el <emp> tipo </emp> de visita que quieres realizar?
 				Le recuerdo que puede consultar los tipos de visita en informacion.
 			</prompt>
 			<grammar src="gramaticaTipoVisita.jsgf"/>
@@ -26,7 +26,7 @@
 
 		<!-- Nombre y apellidos -->
 		<field name="nombreApellidos">
-			<prompt>Diga su nombre y apellidos por favor.</prompt>
+			<prompt>Diga su <emp> nombre y apellidos </emp> por favor.</prompt>
 			<grammar src="gramaticaNombreApellidos.jsgf"/>
 			<nomatch count="1">
 				Diga su nombre y apellidos, por ejemplo, Ramon Lopez Cozar.
@@ -40,7 +40,7 @@
 
 		<!-- Dia de la visita -->
 		<field name="diaVisita">
-			<prompt>Indique el dia que quiere hacer la visita</prompt>
+			<prompt>Indique el <emp> dia </emp> que quiere hacer la visita</prompt>
 			<grammar src="gramaticaDia.jsgf"/>
 			<nomatch count="1">
 				Di el dia de la visita, por ejemplo, el dos.
@@ -54,7 +54,7 @@
 
 		<!-- Mes de la visita -->
 		<field name="mesVisita">
-			<prompt>Indique el mes que quiere hacer la visita.</prompt>
+			<prompt>Indique el <emp> mes </emp> que quiere hacer la visita.</prompt>
 			<grammar src="gramaticaMes.jsgf"/>
 			<nomatch count="1">
 				Di el mes de la visita, por ejemplo, mayo.
@@ -68,7 +68,7 @@
 
 		<!-- Numero de entradas -->
 		<field name="numEntradas">
-			<prompt>Indique la cantidad de entradas que desea.</prompt>
+			<prompt>Indique la <emp> cantidad </emp> de entradas que desea.</prompt>
 			<grammar src="gramaticaNumEntradas.jsgf"/>
 			<nomatch count="1">
 				Diga un numero de entradas, por ejemplo, dos.
