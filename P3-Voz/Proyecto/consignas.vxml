@@ -9,5 +9,19 @@
 				</audio>
 			</prompt>
 		</block>
+
+		<field name="confirmar_salida" type="boolean">
+			<prompt>Desea hacer mas consultas?</prompt>
+			<filled>
+				<if cond="confirmar_salida">
+					De acuerdo.
+					<clear namelist="confirmar_salida"/>
+					<goto next="./main.vxml"/>
+					<exit/>
+				<else/>
+					Gracias y hasta pronto.
+				</if>
+			</filled>
+		</field>
 	</form>
 </vxml>
